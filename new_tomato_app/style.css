@@ -7,12 +7,20 @@
   margin-top: 60px;
 }
 
+/* 
+=============================================
+CLASSES
+=============================================
+*/
+
+/* sets styling for countdown timer */
 .timer {
   text-align: center;
   font-size: 60px;
   margin-top: 0px;
 }
 
+/* set main page background color*/
 .red_background {
   background-color: #d95550;
 }
