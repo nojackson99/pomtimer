@@ -3,13 +3,13 @@ import './style.css'
 // calculates countdown date and calls start timer function
 function getCountDownDate() {
 
-  let now = Date.now();   // calculates and sets current time
-  let minutes = 25;   // will be changed depending on which timer button is pressed?
-  let milliMultiplier = 60000;    // multiplier to convert minutes to milliseconds
-  let calculationOffset = 1000;   // offsets calculation for correct timer
+  const now = Date.now();   // calculates and sets current time
+  let desiredMinutes = 25;   // will be changed depending on which timer button is pressed?
+  const milliMultiplier = 60000;    // multiplier to convert minutes to milliseconds
+  const calculationOffset = 1000;   // offsets calculation for correct timer
   
   // takes minutes and calculates to milliseconds for countdown timer function
-  let cdTime = now + (minutes * milliMultiplier) + calculationOffset
+  let cdTime = now + (desiredMinutes * milliMultiplier) + calculationOffset
 
   timerControl(cdTime)
 }
@@ -18,10 +18,10 @@ function getCountDownDate() {
 function timerControl(countDownTime) {
 
   // Update the count down every 1 second
-  let x = setInterval(function () {
+  const timerLoop = setInterval(function () {
 
     // Get today's date and time
-    let now = new Date().getTime();
+    const now = new Date().getTime();
 
     // Find the distance between now and the count down date
     let distance = countDownTime - now;
@@ -35,7 +35,7 @@ function timerControl(countDownTime) {
 
     // If the count down is over, write some text 
     if (distance < 0) {
-      clearInterval(x);
+      clearInterval(timerLoop);
       document.getElementById("timer-display").innerHTML = "Session over +1 tomato";
     }
   }, 1000);
