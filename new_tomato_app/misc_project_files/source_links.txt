@@ -1,0 +1,5 @@
+Code sources
+
+timer: https://www.w3schools.com/howto/howto_js_countdown.asp
+flexbox: https://coder-coder.com/display-divs-side-by-side/#flexbox-method
+content dividers: https://codepen.io/Oddgson/pen/VPrYbv

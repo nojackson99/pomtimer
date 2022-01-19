@@ -42,7 +42,7 @@ function timerControl(countDownTime) {
 }
 
 // set start time button to variable
-const startTimerButton = document.getElementById("timer_start");
+const startTimerButton = document.getElementById("timer-start");
 
 // starts timer function when start focus button is pressed
 startTimerButton.addEventListener('click', function () {
