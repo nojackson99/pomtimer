@@ -3,8 +3,8 @@ import './style.css'
 // calculates countdown date and calls start timer function
 function getCountDownDate() {
 
-  const now = Date.now();   // calculates and sets current time
-  let desiredMinutes = 25;   // will be changed depending on which timer button is pressed?
+  const now = Date.now();           // calculates and sets current time
+  let desiredMinutes = .1;          // will be changed depending on which timer button is pressed?
   const milliMultiplier = 60000;    // multiplier to convert minutes to milliseconds
   const calculationOffset = 1000;   // offsets calculation for correct timer
   
@@ -37,14 +37,25 @@ function timerControl(countDownTime) {
     if (distance < 0) {
       clearInterval(timerLoop);
       document.getElementById("timer-display").innerHTML = "Session over +1 tomato";
+      playSound();
     }
   }, 1000);
+}
+
+// triggers audio file playback
+function playSound() {
+  var sound = new Audio('/misc_project_files/alyssa_timer_end.mp3')
+  sound.play();
 }
 
 // set start time button to variable
 const startTimerButton = document.getElementById("timer-start");
 
+const playSoundButton = document.getElementById("test-button");
+
 // starts timer function when start focus button is pressed
 startTimerButton.addEventListener('click', function () {
   getCountDownDate();
 });
+
+playSoundButton.addEventListener('click', playSound)
