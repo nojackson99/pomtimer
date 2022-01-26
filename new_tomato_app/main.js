@@ -39,18 +39,18 @@ function timerControl(countDownTime) {
       playSound();
 
       //toggle focus and break on timer end
-      if (desiredMinutes === 25) {
-        desiredMinutes = 5;
-        timerDisplay.innerHTML = "5:00"
-      }
-      else if(desiredMinutes === .1) {
-        desiredMinutes = .5
-        timerDisplay.innerHTML = "timer display test"
-      }
-      else {
-        desiredMinutes = 25;
-        timerDisplay.innerHTML = "25:00"
-      }
+      // if (desiredMinutes === 25) {
+      //   desiredMinutes = 5;
+      //   timerDisplay.innerHTML = "5:00"
+      // }
+      // else if(desiredMinutes === .1) {
+      //   desiredMinutes = .5
+      //   timerDisplay.innerHTML = "timer display test"
+      // }
+      // else {
+      //   desiredMinutes = 25;
+      //   timerDisplay.innerHTML = "25:00"
+      // }
     }
   }, 1000);
 }

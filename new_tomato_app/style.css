@@ -4,17 +4,23 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: white;
-  margin-top: 60px;
+  margin-top: 80px;
 }
 
 /* 
 =============================================
-CLASSES
+HTML ELEMENT CLASSES
 =============================================
 */
 
+h1 {
+	font-size: 120px;
+  }
+
 /* 
-HEAD
+=============================================
+HEAD CLASSES
+=============================================
 */
 
 /* head text classes */
@@ -74,17 +80,17 @@ HEAD
 
 
 /* 
-BODY
+=============================================
+BODY CLASSES
+=============================================
 */
-
-/* sets styling for countdown timer */
-.timer {
-  text-align: center;
-  font-size: 60px;
-  margin-top: 0px;
-}
 
 /* set main page background color*/
 .red-background {
   background-color: #d95550;
+}
+
+/* sets styling for countdown timer */
+.timer {
+	text-align: center;
 }
