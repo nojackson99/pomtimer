@@ -71,6 +71,11 @@ const siteBody = document.getElementById("site-body");
 // controls length of timer
 let desiredMinutes = .1;
 
+// theme classes
+const pomTheme = 'pomodoro-red';
+const shortTheme = 'short-break-green';
+const longTheme = 'long-break-blue';
+
 // starts timer function when start focus button is pressed
 startTimerButton.addEventListener('click', function () {
   buttonClick.play();
@@ -84,8 +89,8 @@ pomodoroTimerButton.addEventListener('click', function () {
   startTimerButton.innerHTML = "Start Focus"
 
   timerContainer.classList.replace('small-text', 'large-text')
-  if (siteBody.classList.contains('short-break-green')) siteBody.classList.replace('short-break-green', 'pomodoro-red')
-  else if (siteBody.classList.contains('long-break-blue')) siteBody.classList.replace('long-break-blue', 'pomodoro-red')
+  if (siteBody.classList.contains(`${shortTheme}`)) siteBody.classList.replace(`${shortTheme}`, `${pomTheme}`)
+  else if (siteBody.classList.contains(`${longTheme}`)) siteBody.classList.replace(`${longTheme}`, `${pomTheme}`)
   else null;
 
 });
@@ -96,8 +101,8 @@ shortBreakButton.addEventListener('click', function () {
 
 
   timerContainer.classList.replace('small-text', 'large-text')
-  if (siteBody.classList.contains('pomodoro-red')) siteBody.classList.replace('pomodoro-red', 'short-break-green')
-  else if (siteBody.classList.contains('long-break-blue')) siteBody.classList.replace('long-break-blue', 'short-break-green')
+  if (siteBody.classList.contains(`${pomTheme}`)) siteBody.classList.replace(`${pomTheme}`, `${shortTheme}`)
+  else if (siteBody.classList.contains(`${longTheme}`)) siteBody.classList.replace(`${longTheme}`, `${shortTheme}`)
   else null;
 
 });
@@ -108,8 +113,8 @@ longBreakButton.addEventListener('click', function () {
 
 
   timerContainer.classList.replace('small-text', 'large-text')
-  if (siteBody.classList.contains('pomodoro-red')) siteBody.classList.replace('pomodoro-red', 'long-break-blue')
-  else if (siteBody.classList.contains('short-break-green')) siteBody.classList.replace('short-break-green', 'long-break-blue')
+  if (siteBody.classList.contains(`${pomTheme}`)) siteBody.classList.replace(`${pomTheme}`, `${longTheme}`)
+  else if (siteBody.classList.contains(`${shortTheme}`)) siteBody.classList.replace(`${shortTheme}`, `${longTheme}`)
   else null;
 
 });
