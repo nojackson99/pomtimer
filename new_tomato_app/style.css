@@ -7,17 +7,48 @@
   margin-top: 80px;
 }
 
+
+/* 
+=============================================
+COLOR THEMES
+=============================================
+*/
+
+:root {
+	--pomodoro: #D95550;
+	--pomodoro-light: #DD6662;
+	--short-break: #4C9195;
+	--short-break-light: #5E9CA0;
+	--long-break: #457CA3;
+	--long-break-light: #5889AC;
+}
+
+.pomodoro-red {
+	--accent: var(--pomodoro-light);
+	--main: var(--pomodoro);
+}
+
+.short-break-green {
+	--accent: var(--short-break-light);
+	--main: var(--short-break);
+}
+
+.long-break-blue {
+	--accent: var(--long-break-light);
+	--main: var(--long-break);
+}
+
+
 /* 
 =============================================
 HTML ELEMENT CLASSES
 =============================================
 */
 
-h1 {
-	font-size: 120px;
-	line-height: 34px;
-  	height: 35px;
-  }
+body {
+	background-color: var(--main);
+	transition: background-color 500ms ease-in-out;
+}
 
 /* 
 =============================================
@@ -37,7 +68,7 @@ HEAD CLASSES
 }
 
 .flex-child:first-child {
-  margin-right: 40px
+  margin-right: 240px
 }
 
 .head-title {
@@ -87,19 +118,46 @@ BODY CLASSES
 =============================================
 */
 
-/* set main page background color*/
-.red-background {
-  background-color: #d95550;
+/* background color classes */
+.pomodoro {
+    background-color: var(--pomodoro);
+    color: var(--pomodoro)
+}
+
+.pomodoro-light {
+	background-color: var(--pomodoro-light);
+	color: var(--pomodoro-light);
+}
+
+.long-break {
+	background-color: var(--long-break);
+	color: var(--long-break);
+}
+
+.long-break-light {
+	background-color: var(--long-break-light);
+	color: var(--long-break-light);
+}
+
+.short-break {
+	background-color: var(--short-break);
+	color: var(--short-break);
+}
+
+.short-break-light {
+	background-color: var(--short-break-light);
+	color: var(--short-break-light);
 }
 
 /* style border around timer content */
 .border {
   	border-radius: 35px;
 	margin: auto;
-	background-color: #DD6662;
     padding: 40px;
     width: 550px;
     height: 295px;
+	background-color: var(--accent);
+	transition: background-color 750ms ease-in-out;
 }
 
 
@@ -113,8 +171,9 @@ styling for buttons above timer
 .rounded-button {
 	border-radius: 7px;
 	font-size: 18px;
-	color: #1F2C3A;
+	color: var(--main);
 	border: none;
+	transition: color 750ms ease-in-out
 }
 
 /* styles button spacing */
@@ -146,6 +205,17 @@ countdown timer styling
 /* sets styling for countdown timer */
 .timer {
 	text-align: center;
+	color: white;
+}
+.large-text {
+	font-size: 80px;
+	line-height: 34px;
+  	height: 110px;
+}
+.small-text {
+	font-size: 45px;
+	line-height: 100px;
+  	height: 157px;
 }
 
 
@@ -164,11 +234,13 @@ styling for button below timer
 	text-align: center;
 	text-decoration: none;
 	outline: none;
-	color: #1F2C3A;
+	color: var(--main);
 	background-color: white;
 	border: none;
 	border-radius: 15px;
 	box-shadow: 0 9px #999;
+	font-weight: bold;
+	transition: color 750ms ease-in-out; 
   }
     
   .animated-button:active {

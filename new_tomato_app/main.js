@@ -36,7 +36,8 @@ function timerControl(countDownTime) {
     if (distance < 0) {
       playSound();
       clearInterval(timerLoop);
-      timerDisplay.innerHTML = "Session over";
+      timerContainer.classList.replace('large-text', 'small-text')
+      timerDisplay.innerHTML = "Break Time!";
 
     }
   }, 1000);
@@ -49,11 +50,13 @@ function playSound() {
 
 // -------------- Sound Variables -------------
 var alyssaSound = new Audio('/misc_project_files/alyssa_timer_end.mp3')
-var buttonClick = new Audio('/misc_project_files/button_click.mp3')
+var buttonClick = new Audio('/misc_project_files/button_click.mp3') // sound form zapsplat.com
 
 // -------------- HTML Elements -------------
 // timer display
 const timerDisplay = document.getElementById("timer-display");
+// timer container
+const timerContainer = document.getElementById("timer-container")
 // start focus button
 const startTimerButton = document.getElementById("timer-start");
 // test sound button
@@ -62,9 +65,11 @@ const playSoundButton = document.getElementById("test-button");
 const pomodoroTimerButton = document.getElementById("pomodoro-button")
 const shortBreakButton = document.getElementById("short-break-button")
 const longBreakButton = document.getElementById("long-break-button");
+// app body
+const siteBody = document.getElementById("site-body");
 
 // controls length of timer
-let desiredMinutes = 25;
+let desiredMinutes = .1;
 
 // starts timer function when start focus button is pressed
 startTimerButton.addEventListener('click', function () {
@@ -76,14 +81,37 @@ startTimerButton.addEventListener('click', function () {
 pomodoroTimerButton.addEventListener('click', function () {
   desiredMinutes = 25;
   timerDisplay.innerHTML = "25:00"
+  startTimerButton.innerHTML = "Start Focus"
+
+  timerContainer.classList.replace('small-text', 'large-text')
+  if (siteBody.classList.contains('short-break-green')) siteBody.classList.replace('short-break-green', 'pomodoro-red')
+  else if (siteBody.classList.contains('long-break-blue')) siteBody.classList.replace('long-break-blue', 'pomodoro-red')
+  else null;
+
 });
 shortBreakButton.addEventListener('click', function () {
   desiredMinutes = 5;
   timerDisplay.innerHTML = "05:00"
+  startTimerButton.innerHTML = "Start Break"
+
+
+  timerContainer.classList.replace('small-text', 'large-text')
+  if (siteBody.classList.contains('pomodoro-red')) siteBody.classList.replace('pomodoro-red', 'short-break-green')
+  else if (siteBody.classList.contains('long-break-blue')) siteBody.classList.replace('long-break-blue', 'short-break-green')
+  else null;
+
 });
 longBreakButton.addEventListener('click', function () {
   desiredMinutes = 15;
   timerDisplay.innerHTML = "15:00"
+  startTimerButton.innerHTML = "Start Break"
+
+
+  timerContainer.classList.replace('small-text', 'large-text')
+  if (siteBody.classList.contains('pomodoro-red')) siteBody.classList.replace('pomodoro-red', 'long-break-blue')
+  else if (siteBody.classList.contains('short-break-green')) siteBody.classList.replace('short-break-green', 'long-break-blue')
+  else null;
+
 });
 
 
