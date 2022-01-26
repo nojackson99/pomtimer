@@ -21,23 +21,23 @@
 <body class="red-background">
   <div id="app">
 
-    <div>
+    <div class="border">
       
-      <div>
+      <div class="button-flex">
         <!-- set timer length for pomodoro + short & long break -->
-        <button id="25-minute-timer">Set 25 Minute Focus</button>
-        <button id="5-minute-timer">Set 5 Minute Break</button>
+        <button id="pomodoro-button" class="rounded-button button-flex-child">Pomodoro</button>
+        <button id="short-break-button" class="rounded-button button-flex-child">Short Break</button>
+        <button id="long-break-button" class="rounded-button button-flex-child">Long Break</button>
       </div>
 
         <div class="timer">
           <!-- timer display -->
-          <h1 id="timer-display">Timer</h1>
+          <h1 id="timer-display">25:00</h1>
         </div>
 
       <div>
         <!-- start timer -->
-        <button id="timer-start">Start Focus</button>
-        <button id="test-button">Test Sound</button>
+        <button id="timer-start" class="animated-button">Start Focus</button>
       </div>
 
     </div>

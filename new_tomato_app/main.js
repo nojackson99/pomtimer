@@ -34,36 +34,24 @@ function timerControl(countDownTime) {
 
     // If the count down is over, write some text 
     if (distance < 0) {
-      clearInterval(timerLoop);
-      timerDisplay.innerHTML = "Session over +1 tomato";
       playSound();
+      clearInterval(timerLoop);
+      timerDisplay.innerHTML = "Session over";
 
-      //toggle focus and break on timer end
-      // if (desiredMinutes === 25) {
-      //   desiredMinutes = 5;
-      //   timerDisplay.innerHTML = "5:00"
-      // }
-      // else if(desiredMinutes === .1) {
-      //   desiredMinutes = .5
-      //   timerDisplay.innerHTML = "timer display test"
-      // }
-      // else {
-      //   desiredMinutes = 25;
-      //   timerDisplay.innerHTML = "25:00"
-      // }
     }
   }, 1000);
 }
 
 // triggers audio file playback
 function playSound() {
-  var sound = new Audio('/misc_project_files/alyssa_timer_end.mp3')
-  sound.play();
+  alyssaSound.play();
 }
 
-// will be changed depending on which timer button is pressed?
-let desiredMinutes = .1;
+// -------------- Sound Variables -------------
+var alyssaSound = new Audio('/misc_project_files/alyssa_timer_end.mp3')
+var buttonClick = new Audio('/misc_project_files/button_click.mp3')
 
+// -------------- HTML Elements -------------
 // timer display
 const timerDisplay = document.getElementById("timer-display");
 // start focus button
@@ -71,22 +59,31 @@ const startTimerButton = document.getElementById("timer-start");
 // test sound button
 const playSoundButton = document.getElementById("test-button");
 // set 5 and 25 minute timer buttons
-const twentyFiveMinuteTimer = document.getElementById("25-minute-timer")
-const fiveMinuteTimer = document.getElementById("5-minute-timer")
+const pomodoroTimerButton = document.getElementById("pomodoro-button")
+const shortBreakButton = document.getElementById("short-break-button")
+const longBreakButton = document.getElementById("long-break-button");
+
+// controls length of timer
+let desiredMinutes = 25;
 
 // starts timer function when start focus button is pressed
 startTimerButton.addEventListener('click', function () {
+  buttonClick.play();
   getCountDownDate();
 });
 
 // sets timer length
-twentyFiveMinuteTimer.addEventListener('click', function () {
+pomodoroTimerButton.addEventListener('click', function () {
   desiredMinutes = 25;
   timerDisplay.innerHTML = "25:00"
 });
-fiveMinuteTimer.addEventListener('click', function () {
+shortBreakButton.addEventListener('click', function () {
   desiredMinutes = 5;
-  timerDisplay.innerHTML = "5:00"
+  timerDisplay.innerHTML = "05:00"
+});
+longBreakButton.addEventListener('click', function () {
+  desiredMinutes = 15;
+  timerDisplay.innerHTML = "15:00"
 });
 
 

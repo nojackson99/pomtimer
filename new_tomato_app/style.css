@@ -15,6 +15,8 @@ HTML ELEMENT CLASSES
 
 h1 {
 	font-size: 120px;
+	line-height: 34px;
+  	height: 35px;
   }
 
 /* 
@@ -90,7 +92,87 @@ BODY CLASSES
   background-color: #d95550;
 }
 
+/* style border around timer content */
+.border {
+  	border-radius: 35px;
+	margin: auto;
+	background-color: #DD6662;
+    padding: 40px;
+    width: 550px;
+    height: 295px;
+}
+
+
+/* 
+-------------------------------
+styling for buttons above timer
+------------------------------- 
+*/
+
+/* sets button style to rounded */
+.rounded-button {
+	border-radius: 7px;
+	font-size: 18px;
+	color: #1F2C3A;
+	border: none;
+}
+
+/* styles button spacing */
+.button-flex {
+	display: flex;
+	color: white;
+	font-size: 22px;
+  }
+  
+.button-flex-child {
+	flex: 1;
+}
+  
+.button-flex-child:first-child {
+	margin-right: 15px
+}
+
+.button-flex-child:nth-child(2) {
+	margin-right: 15px
+}
+
+
+/* 
+-------------------------------
+countdown timer styling
+------------------------------- 
+*/
+
 /* sets styling for countdown timer */
 .timer {
 	text-align: center;
 }
+
+
+/* 
+-------------------------------
+styling for button below timer
+------------------------------- 
+*/
+
+/* sets button style to animated */
+.animated-button {
+	display: inline-block;
+	padding: 15px 25px;
+	font-size: 24px;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	outline: none;
+	color: #1F2C3A;
+	background-color: white;
+	border: none;
+	border-radius: 15px;
+	box-shadow: 0 9px #999;
+  }
+    
+  .animated-button:active {
+	background-color: white;
+	box-shadow: 0 5px #666;
+	transform: translateY(4px);
+  }
