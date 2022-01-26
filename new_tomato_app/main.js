@@ -4,14 +4,13 @@ import './style.css'
 function getCountDownDate() {
 
   const now = Date.now();           // calculates and sets current time
-  let desiredMinutes = .1;          // will be changed depending on which timer button is pressed?
   const milliMultiplier = 60000;    // multiplier to convert minutes to milliseconds
   const calculationOffset = 1000;   // offsets calculation for correct timer
   
   // takes minutes and calculates to milliseconds for countdown timer function
   let cdTime = now + (desiredMinutes * milliMultiplier) + calculationOffset
 
-  timerControl(cdTime)
+  timerControl(cdTime, desiredMinutes)
 }
 
 // starts count down to passed in count down date
@@ -31,13 +30,27 @@ function timerControl(countDownTime) {
     let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
     // Output the result to timer display
-    document.getElementById("timer-display").innerHTML = minutes + ":" + seconds;
+    timerDisplay.innerHTML = minutes + ":" + seconds;
 
     // If the count down is over, write some text 
     if (distance < 0) {
       clearInterval(timerLoop);
-      document.getElementById("timer-display").innerHTML = "Session over +1 tomato";
+      timerDisplay.innerHTML = "Session over +1 tomato";
       playSound();
+
+      //toggle focus and break on timer end
+      if (desiredMinutes === 25) {
+        desiredMinutes = 5;
+        timerDisplay.innerHTML = "5:00"
+      }
+      else if(desiredMinutes === .1) {
+        desiredMinutes = .5
+        timerDisplay.innerHTML = "timer display test"
+      }
+      else {
+        desiredMinutes = 25;
+        timerDisplay.innerHTML = "25:00"
+      }
     }
   }, 1000);
 }
@@ -48,14 +61,33 @@ function playSound() {
   sound.play();
 }
 
-// set start time button to variable
-const startTimerButton = document.getElementById("timer-start");
+// will be changed depending on which timer button is pressed?
+let desiredMinutes = .1;
 
+// timer display
+const timerDisplay = document.getElementById("timer-display");
+// start focus button
+const startTimerButton = document.getElementById("timer-start");
+// test sound button
 const playSoundButton = document.getElementById("test-button");
+// set 5 and 25 minute timer buttons
+const twentyFiveMinuteTimer = document.getElementById("25-minute-timer")
+const fiveMinuteTimer = document.getElementById("5-minute-timer")
 
 // starts timer function when start focus button is pressed
 startTimerButton.addEventListener('click', function () {
   getCountDownDate();
 });
+
+// sets timer length
+twentyFiveMinuteTimer.addEventListener('click', function () {
+  desiredMinutes = 25;
+  timerDisplay.innerHTML = "25:00"
+});
+fiveMinuteTimer.addEventListener('click', function () {
+  desiredMinutes = 5;
+  timerDisplay.innerHTML = "5:00"
+});
+
 
 playSoundButton.addEventListener('click', playSound)
