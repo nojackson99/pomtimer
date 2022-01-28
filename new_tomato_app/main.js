@@ -69,7 +69,7 @@ const longBreakButton = document.getElementById("long-break-button");
 const siteBody = document.getElementById("site-body");
 
 // controls length of timer
-let desiredMinutes = .1;
+let desiredMinutes = 25;
 
 // theme classes
 const pomTheme = 'pomodoro-red';
