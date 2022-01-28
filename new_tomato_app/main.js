@@ -1,19 +1,21 @@
 import './style.css'
 
-// calculates countdown date and calls start timer function
+// -------------- FUNCTIONS -------------------
+// calculate countdown date and call start timer function
 function getCountDownDate() {
 
-  const now = Date.now();           // calculates and sets current time
+  const now = Date.now();           // calculate and set current time
   const milliMultiplier = 60000;    // multiplier to convert minutes to milliseconds
-  const calculationOffset = 1000;   // offsets calculation for correct timer
+  const calculationOffset = 1000;   // offset calculation for correct timer
   
-  // takes minutes and calculates to milliseconds for countdown timer function
+  // take minutes and calculate to milliseconds for countdown timer function
   let cdTime = now + (desiredMinutes * milliMultiplier) + calculationOffset
 
+  // call timerControl pass in 
   timerControl(cdTime, desiredMinutes)
 }
 
-// starts count down to passed in count down date
+// start count down to passed in count down date
 function timerControl(countDownTime) {
 
   // Update the count down every 1 second
@@ -48,27 +50,27 @@ function playSound() {
   alyssaSound.play();
 }
 
-// -------------- Sound Variables -------------
+// -------------- SOUND VARIABLES -------------
 var alyssaSound = new Audio('/misc_project_files/alyssa_timer_end.mp3')
-var buttonClick = new Audio('/misc_project_files/button_click.mp3') // sound form zapsplat.com
+var buttonClick = new Audio('/misc_project_files/button_click.mp3') // sound from zapsplat.com
 
-// -------------- HTML Elements -------------
+// -------------- HTML ELEMENTS ---------------
 // timer display
 const timerDisplay = document.getElementById("timer-display");
 // timer container
 const timerContainer = document.getElementById("timer-container")
-// start focus button
+// start timer button
 const startTimerButton = document.getElementById("timer-start");
 // test sound button
 const playSoundButton = document.getElementById("test-button");
-// set 5 and 25 minute timer buttons
+// set timer length buttons
 const pomodoroTimerButton = document.getElementById("pomodoro-button")
 const shortBreakButton = document.getElementById("short-break-button")
 const longBreakButton = document.getElementById("long-break-button");
 // app body
 const siteBody = document.getElementById("site-body");
 
-// controls length of timer
+// control length of timer
 let desiredMinutes = 25;
 
 // theme classes
@@ -76,13 +78,15 @@ const pomTheme = 'pomodoro-red';
 const shortTheme = 'short-break-green';
 const longTheme = 'long-break-blue';
 
-// starts timer function when start focus button is pressed
+// start timer function when start focus button is pressed
 startTimerButton.addEventListener('click', function () {
   buttonClick.play();
   getCountDownDate();
 });
 
-// sets timer length
+
+// -------------- EVENT LISTENERS ------------
+// set timer length to pomadoro
 pomodoroTimerButton.addEventListener('click', function () {
   desiredMinutes = 25;
   timerDisplay.innerHTML = "25:00"
@@ -94,6 +98,7 @@ pomodoroTimerButton.addEventListener('click', function () {
   else null;
 
 });
+// set timer length to short break
 shortBreakButton.addEventListener('click', function () {
   desiredMinutes = 5;
   timerDisplay.innerHTML = "05:00"
@@ -106,6 +111,7 @@ shortBreakButton.addEventListener('click', function () {
   else null;
 
 });
+// set timer length to long break
 longBreakButton.addEventListener('click', function () {
   desiredMinutes = 15;
   timerDisplay.innerHTML = "15:00"
@@ -119,5 +125,5 @@ longBreakButton.addEventListener('click', function () {
 
 });
 
-
-playSoundButton.addEventListener('click', playSound)
+//for testing new sounds
+//playSoundButton.addEventListener('click', playSound)
