@@ -53,6 +53,7 @@ function playSound() {
 // -------------- SOUND VARIABLES -------------
 var alyssaSound = new Audio('/misc_project_files/alyssa_timer_end.mp3')
 var buttonClick = new Audio('/misc_project_files/button_click.mp3') // sound from zapsplat.com
+var ringingBell = new Audio('/misc_project_files/ringing_bell.mp3')
 
 // -------------- HTML ELEMENTS ---------------
 // timer display
@@ -70,8 +71,13 @@ const longBreakButton = document.getElementById("long-break-button");
 // app body
 const siteBody = document.getElementById("site-body");
 
+// control pom and break lengths
+let workLength = 25;
+let shortBreak = 8;
+let longBreak = 17;
+
 // control length of timer
-let desiredMinutes = 25;
+let desiredMinutes = workLength;
 
 // theme classes
 const pomTheme = 'pomodoro-red';
@@ -88,8 +94,8 @@ startTimerButton.addEventListener('click', function () {
 // -------------- EVENT LISTENERS ------------
 // set timer length to pomadoro
 pomodoroTimerButton.addEventListener('click', function () {
-  desiredMinutes = 25;
-  timerDisplay.innerHTML = "25:00"
+  desiredMinutes = workLength;
+  timerDisplay.innerHTML = `${workLength}:00`
   startTimerButton.innerHTML = "Start Focus"
 
   timerContainer.classList.replace('small-text', 'large-text')
@@ -100,8 +106,8 @@ pomodoroTimerButton.addEventListener('click', function () {
 });
 // set timer length to short break
 shortBreakButton.addEventListener('click', function () {
-  desiredMinutes = 5;
-  timerDisplay.innerHTML = "05:00"
+  desiredMinutes = shortBreak;
+  timerDisplay.innerHTML = `${shortBreak}:00`
   startTimerButton.innerHTML = "Start Break"
 
 
@@ -113,8 +119,8 @@ shortBreakButton.addEventListener('click', function () {
 });
 // set timer length to long break
 longBreakButton.addEventListener('click', function () {
-  desiredMinutes = 15;
-  timerDisplay.innerHTML = "15:00"
+  desiredMinutes = longBreak;
+  timerDisplay.innerHTML = `${longBreak}:00`
   startTimerButton.innerHTML = "Start Break"
 
 
@@ -125,5 +131,5 @@ longBreakButton.addEventListener('click', function () {
 
 });
 
-//for testing new sounds
-//playSoundButton.addEventListener('click', playSound)
+// for testing new sounds
+playSoundButton.addEventListener('click', playSound)
