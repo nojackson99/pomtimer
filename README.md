@@ -1,5 +1,5 @@
 # PomTimer
-
+![PomTimer Logo](./new_tomato_app/misc_project_files/timer.png)
 
 
 
