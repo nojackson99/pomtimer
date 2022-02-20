@@ -1,3 +1,7 @@
+//npm install easytimer.js --save
+// import Timer from "easytimer.js";
+
+// -------------- IMPORTS ---------------------
 import './style.css'
 
 // -------------- FUNCTIONS -------------------
@@ -50,6 +54,16 @@ function playSound() {
   alyssaSound.play();
 }
 
+function easyTimerTest() {
+  var timer = new Timer(/* default config */);
+  timer.start(/* config */);
+  timer.addEventListener("secondsUpdated", function (e) {
+    $("#basicUsage").html(timer.getTimeValues().toString());
+  });
+
+  console.log(console.log(timer))
+}
+
 // -------------- SOUND VARIABLES -------------
 var alyssaSound = new Audio('/misc_project_files/alyssa_timer_end.mp3')
 var buttonClick = new Audio('/misc_project_files/button_click.mp3') // sound from zapsplat.com
@@ -62,8 +76,12 @@ const timerDisplay = document.getElementById("timer-display");
 const timerContainer = document.getElementById("timer-container")
 // start timer button
 const startTimerButton = document.getElementById("timer-start");
+
 // test sound button
-const playSoundButton = document.getElementById("test-button");
+// const playSoundButton = document.getElementById("test-button");
+
+// test buttons
+const testButton = document.getElementById("test-button");
 // set timer length buttons
 const pomodoroTimerButton = document.getElementById("pomodoro-button")
 const shortBreakButton = document.getElementById("short-break-button")
@@ -132,4 +150,8 @@ longBreakButton.addEventListener('click', function () {
 });
 
 // for testing new sounds
-playSoundButton.addEventListener('click', playSound)
+// playSoundButton.addEventListener('click', playSound)
+
+// test button for various uses
+testButton.addEventListener('click', easyTimerTest)
+
