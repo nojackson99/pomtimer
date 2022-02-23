@@ -77,6 +77,9 @@ const timerContainer = document.getElementById("timer-container")
 // start timer button
 const startTimerButton = document.getElementById("timer-start");
 
+// task realted elements
+const submitTaskButton = document.getElementById("submit-button");
+const taskSubmitBox = document.getElementById("new-task");
 // test sound button
 // const playSoundButton = document.getElementById("test-button");
 
@@ -148,6 +151,11 @@ longBreakButton.addEventListener('click', function () {
   else null;
 
 });
+// get new task from input field
+submitTaskButton.addEventListener('click', function () {
+  let task = taskSubmitBox.value;
+  console.log(task);
+})
 
 // for testing new sounds
 // playSoundButton.addEventListener('click', playSound)

@@ -51,6 +51,7 @@ Not started:
 
 In progress:
 - Timer Improvements
+- Implement basic task tracking
 
 Complete:
 - Add button/timer sounds & end timer notification
