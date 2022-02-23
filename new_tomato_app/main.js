@@ -90,7 +90,7 @@ const longBreakButton = document.getElementById("long-break-button");
 const siteBody = document.getElementById("site-body");
 
 // control pom and break lengths
-let workLength = 25;
+let workLength = .1;
 let shortBreak = 8;
 let longBreak = 17;
 
