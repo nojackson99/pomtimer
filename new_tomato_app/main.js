@@ -54,6 +54,8 @@ function playSound() {
   alyssaSound.play();
 }
 
+// testing easytimer.js functionality
+// *** Not implemented yet ***
 function easyTimerTest() {
   var timer = new Timer(/* default config */);
   timer.start(/* config */);
@@ -77,9 +79,11 @@ const timerContainer = document.getElementById("timer-container")
 // start timer button
 const startTimerButton = document.getElementById("timer-start");
 
-// task realted elements
+// task related elements
 const submitTaskButton = document.getElementById("submit-button");
 const taskSubmitBox = document.getElementById("new-task");
+const taskList = document.querySelector('.task-list');
+
 // test sound button
 // const playSoundButton = document.getElementById("test-button");
 
@@ -151,10 +155,20 @@ longBreakButton.addEventListener('click', function () {
   else null;
 
 });
-// get new task from input field
+// display new task from input field
+// [X] todo: 
 submitTaskButton.addEventListener('click', function () {
-  let task = taskSubmitBox.value;
-  console.log(task);
+  //text submitted in new task box
+  const task = taskSubmitBox.value;
+  //new list element to be appended to task list 
+  let taskListNode = document.createElement('li');
+  //populates new list element with submitted task
+  taskListNode.appendChild(document.createTextNode(`${task}`));
+  //appends new complete list element to current task list
+  taskList.appendChild(taskListNode);
+  //console.log(task);
+
+
 })
 
 // for testing new sounds

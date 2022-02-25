@@ -248,3 +248,15 @@ styling for button below timer
 	box-shadow: 0 5px #666;
 	transform: translateY(4px);
   }
+
+
+/*
+-------------------------------
+styling for task module
+-------------------------------
+*/
+
+/* sets styling for task list */
+.task-list {
+	list-style-position: inside
+}
