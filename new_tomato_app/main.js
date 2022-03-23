@@ -1,10 +1,13 @@
 //npm install easytimer.js --save
 // import Timer from "easytimer.js";
 
+
 // -------------- IMPORTS ---------------------
 import './style.css'
 
+
 // -------------- FUNCTIONS -------------------
+// This section down to playSound function will hopefully change with easytimer
 // calculate countdown date and call start timer function
 function getCountDownDate() {
 
@@ -42,16 +45,11 @@ function timerControl(countDownTime) {
     if (distance < 0) {
       playSound();
       clearInterval(timerLoop);
-      timerContainer.classList.replace('large-text', 'small-text')
+      timerContainer.classList.replace('large-text', 'finish-text')
       timerDisplay.innerHTML = "Break Time!";
 
     }
   }, 1000);
-}
-
-// triggers audio file playback
-function playSound() {
-  alyssaSound.play();
 }
 
 // testing easytimer.js functionality
@@ -66,12 +64,19 @@ function easyTimerTest() {
   console.log(console.log(timer))
 }
 
+// triggers audio file playback
+function playSound() {
+  alyssaSound.play();
+}
+
+
 // -------------- SOUND VARIABLES -------------
 var alyssaSound = new Audio('/misc_project_files/alyssa_timer_end.mp3')
 var buttonClick = new Audio('/misc_project_files/button_click.mp3') // sound from zapsplat.com
 var ringingBell = new Audio('/misc_project_files/ringing_bell.mp3')
 
-// -------------- HTML ELEMENTS ---------------
+
+// -------------- HTML ELEMENT VARIABLES ------
 // timer display
 const timerDisplay = document.getElementById("timer-display");
 // timer container
@@ -84,33 +89,31 @@ const submitTaskButton = document.getElementById("submit-button");
 const taskSubmitBox = document.getElementById("new-task");
 const taskList = document.querySelector('.task-list');
 
-// test sound button
-// const playSoundButton = document.getElementById("test-button");
-
-// test buttons
+// test button
 const testButton = document.getElementById("test-button");
+
 // set timer length buttons
 const pomodoroTimerButton = document.getElementById("pomodoro-button")
 const shortBreakButton = document.getElementById("short-break-button")
 const longBreakButton = document.getElementById("long-break-button");
+
 // app body
 const siteBody = document.getElementById("site-body");
 
+
+// -------------- OTHER VARIABLES -------------
 // control pom and break lengths
 let workLength = 25;
 let shortBreak = 5;
 let longBreak = 20;
 
-// control length of timer
+// set defualt timer length to current workLength
 let desiredMinutes = workLength;
 
 // theme classes
 const pomTheme = 'pomodoro-red';
 const shortTheme = 'short-break-green';
 const longTheme = 'long-break-blue';
-
-
-
 
 
 // -------------- EVENT LISTENERS ------------
@@ -124,11 +127,13 @@ startTimerButton.addEventListener('click', function () {
 // [] todo: fix these 3 eventListeners with map?
 // set timer length to pomadoro
 pomodoroTimerButton.addEventListener('click', function () {
+
+  // set timer variable and timer display to correct length
   desiredMinutes = workLength;
   timerDisplay.innerHTML = `${workLength}:00`
   startTimerButton.innerHTML = "Start Focus"
 
-  // timerContainer.classList.replace('small-text', 'large-text')
+  timerContainer.classList.replace('small-text', 'large-text')
   if (siteBody.classList.contains(`${shortTheme}`)) siteBody.classList.replace(`${shortTheme}`, `${pomTheme}`)
   else if (siteBody.classList.contains(`${longTheme}`)) siteBody.classList.replace(`${longTheme}`, `${pomTheme}`)
   else null;
@@ -141,7 +146,7 @@ shortBreakButton.addEventListener('click', function () {
   startTimerButton.innerHTML = "Start Break"
 
 
-  // timerContainer.classList.replace('small-text', 'large-text')
+  timerContainer.classList.replace('small-text', 'large-text')
   if (siteBody.classList.contains(`${pomTheme}`)) siteBody.classList.replace(`${pomTheme}`, `${shortTheme}`)
   else if (siteBody.classList.contains(`${longTheme}`)) siteBody.classList.replace(`${longTheme}`, `${shortTheme}`)
   else null;
@@ -154,12 +159,14 @@ longBreakButton.addEventListener('click', function () {
   startTimerButton.innerHTML = "Start Break"
 
 
-  // timerContainer.classList.replace('small-text', 'large-text')
+  timerContainer.classList.replace('small-text', 'large-text')
   if (siteBody.classList.contains(`${pomTheme}`)) siteBody.classList.replace(`${pomTheme}`, `${longTheme}`)
   else if (siteBody.classList.contains(`${shortTheme}`)) siteBody.classList.replace(`${shortTheme}`, `${longTheme}`)
   else null;
 
+
 });
+
 // display new task from input field
 // [] todo: task allignment
 // [] todo: use chrome storage to store tasks
@@ -176,9 +183,6 @@ submitTaskButton.addEventListener('click', function () {
 
 
 })
-
-// for testing new sounds
-// playSoundButton.addEventListener('click', playSound)
 
 // test button for various uses
 testButton.addEventListener('click', easyTimerTest)

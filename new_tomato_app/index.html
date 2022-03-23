@@ -1,47 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<!-- all head content here -->
 <head>
   <meta charset="UTF-8" />
+  <!-- href is the icon shown on chrome tab -->
   <link rel="icon" type="image/svg+xml" href="./misc_project_files/PomTimer-logo-small.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Focus Better</title>
 
+  <!-- content shown above divider -->
   <div class="head-content-flex">
     <p class="flex-child head-title">PomTimer</p>
     <p class="flex-child">Developed by Noah Jackson</p>
   </div>
 
+  <!-- divider -->
   <div>
     <div class="divider div-transparent div-dot"></div>
   </div>
   
 </head>
 
+<!-- all body content here -->
 <body id="site-body" class="pomodoro-red">
+
   <div id="app">
 
+    <!-- all content within timer border here -->
     <div class="border">
       
+      <!-- pomodoro and break button content-->
       <div class="button-flex">
-        <!-- set timer length for pomodoro + short & long break -->
         <button id="pomodoro-button" class="rounded-button button-flex-child">Pomodoro</button>
         <button id="short-break-button" class="rounded-button button-flex-child">Short Break</button>
         <button id="long-break-button" class="rounded-button button-flex-child">Long Break</button>
       </div>
 
-        <div id="timer-container" class="timer large-text">
-          <!-- timer display -->
-          <h1 id="timer-display">25:00</h1>
-        </div>
+      <!-- timer display content -->
+      <div id="timer-container" class="timer large-text">
+        <h1 id="timer-display">25:00</h1>
+      </div>
 
+      <!-- start focus/break button -->
       <div>
-        <!-- start timer -->
         <button id="timer-start" class="animated-button">Start Focus</button>
       </div>
 
     </div>
 
+    <!-- all content for task section here -->
     <div style="padding-top: 30px; padding-bottom: 30px;">
 
       <!-- form to submit new tasks -->
@@ -49,6 +57,7 @@
         <label for="new-task">New Task:</label>
         <input type="text" id="new-task">
       </form>
+
       <!-- submit button for new task box -->
       <button id="submit-button">Submit</button>
 
@@ -64,8 +73,9 @@
 
   </div>
 
-  
+  <!-- importing js code from main.js -->
   <script type="module" src="/main.js"></script>
+
 </body>
 
 </html>
