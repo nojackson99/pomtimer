@@ -97,9 +97,9 @@ const longBreakButton = document.getElementById("long-break-button");
 const siteBody = document.getElementById("site-body");
 
 // control pom and break lengths
-let workLength = .1;
-let shortBreak = 8;
-let longBreak = 17;
+let workLength = 25;
+let shortBreak = 5;
+let longBreak = 20;
 
 // control length of timer
 let desiredMinutes = workLength;
@@ -109,15 +109,18 @@ const pomTheme = 'pomodoro-red';
 const shortTheme = 'short-break-green';
 const longTheme = 'long-break-blue';
 
+
+
+
+
+// -------------- EVENT LISTENERS ------------
+
 // start timer function when start focus button is pressed
 startTimerButton.addEventListener('click', function () {
   buttonClick.play();
   getCountDownDate();
 });
 
-
-
-// -------------- EVENT LISTENERS ------------
 // [] todo: fix these 3 eventListeners with map?
 // set timer length to pomadoro
 pomodoroTimerButton.addEventListener('click', function () {
@@ -125,7 +128,7 @@ pomodoroTimerButton.addEventListener('click', function () {
   timerDisplay.innerHTML = `${workLength}:00`
   startTimerButton.innerHTML = "Start Focus"
 
-  timerContainer.classList.replace('small-text', 'large-text')
+  // timerContainer.classList.replace('small-text', 'large-text')
   if (siteBody.classList.contains(`${shortTheme}`)) siteBody.classList.replace(`${shortTheme}`, `${pomTheme}`)
   else if (siteBody.classList.contains(`${longTheme}`)) siteBody.classList.replace(`${longTheme}`, `${pomTheme}`)
   else null;
@@ -138,7 +141,7 @@ shortBreakButton.addEventListener('click', function () {
   startTimerButton.innerHTML = "Start Break"
 
 
-  timerContainer.classList.replace('small-text', 'large-text')
+  // timerContainer.classList.replace('small-text', 'large-text')
   if (siteBody.classList.contains(`${pomTheme}`)) siteBody.classList.replace(`${pomTheme}`, `${shortTheme}`)
   else if (siteBody.classList.contains(`${longTheme}`)) siteBody.classList.replace(`${longTheme}`, `${shortTheme}`)
   else null;
@@ -151,7 +154,7 @@ longBreakButton.addEventListener('click', function () {
   startTimerButton.innerHTML = "Start Break"
 
 
-  timerContainer.classList.replace('small-text', 'large-text')
+  // timerContainer.classList.replace('small-text', 'large-text')
   if (siteBody.classList.contains(`${pomTheme}`)) siteBody.classList.replace(`${pomTheme}`, `${longTheme}`)
   else if (siteBody.classList.contains(`${shortTheme}`)) siteBody.classList.replace(`${shortTheme}`, `${longTheme}`)
   else null;
