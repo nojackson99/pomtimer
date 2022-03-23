@@ -116,7 +116,9 @@ startTimerButton.addEventListener('click', function () {
 });
 
 
+
 // -------------- EVENT LISTENERS ------------
+// [] todo: fix these 3 eventListeners with map?
 // set timer length to pomadoro
 pomodoroTimerButton.addEventListener('click', function () {
   desiredMinutes = workLength;
@@ -156,7 +158,8 @@ longBreakButton.addEventListener('click', function () {
 
 });
 // display new task from input field
-// [X] todo: 
+// [] todo: task allignment
+// [] todo: use chrome storage to store tasks
 submitTaskButton.addEventListener('click', function () {
   //text submitted in new task box
   const task = taskSubmitBox.value;
