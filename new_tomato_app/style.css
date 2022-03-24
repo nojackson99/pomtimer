@@ -178,7 +178,15 @@ styling for buttons above timer
 	font-size: 18px;
 	color: var(--main);
 	border: none;
-	transition: color 750ms ease-in-out
+	transition: color 750ms ease-in-out;
+	cursor: pointer;
+}
+
+.rounded-button:hover {
+	opacity: 0.9;
+}
+.rounded-button:active {
+	opacity: 0.75;
 }
 
 /* styles button spacing */
@@ -294,7 +302,7 @@ styling for task module
 
 .new-task-input {
 	flex-grow: 1;
-	font-size: 1.3rem;
+	font-size: 1.8rem;
 	color: white;
 	border-radius: 5px;
 
@@ -307,4 +315,33 @@ styling for task module
 .task-theme {
 	background-color: var(--accent);
 
+}
+
+.task {
+	display: flex;
+	justify-content: center;
+	padding-top: 20px;
+
+}
+
+.task-input {
+	appearance: none;
+	border: none;
+	outline: none;
+	background: none;
+	background-color: var(--accent);
+	width: 500px;
+	font-size: 1.2rem;
+	color: white;
+	border-radius: 5px;
+}
+
+.tasks-header {
+	display: flex;
+	justify-content: center;
+	padding-right: 460px;
+}
+
+span {
+	padding: 10px;
 }

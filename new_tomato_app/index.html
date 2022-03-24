@@ -7,6 +7,8 @@
   <!-- href is the icon shown on chrome tab -->
   <link rel="icon" type="image/svg+xml" href="./misc_project_files/PomTimer-logo-small.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- importing js code from main.js -->
+  <script type="module" src="/main.js"></script>
   <title>Focus Better</title>
 
   <!-- content shown above divider -->
@@ -53,24 +55,31 @@
     <div style="padding-top: 30px; padding-bottom: 30px;">
 
       <!-- form to submit new tasks -->
-      <form class="new-task-form">
-        <input type="text" id="new-task" placeholder="What is your focus?" class="item new-task-input task-theme">
-        <input type="text" id="task-length" placeholder="How long?" class="item new-task-length task-theme">
+      <form id="task-form" class="new-task-form" autocomplete="off">
+        <input type="text" id="new-task-input" placeholder="What is your focus?" class="item new-task-input task-theme">
+        <input type="number" id="new-task-length" placeholder="Length?" class="item new-task-length task-theme">
         <input type="submit" id="new-task-submit" value="Add task" class="animated-button smaller item new-task-submit"> 
       </form>
 
       <!-- list to display current tasks -->
       <section class="task-list">
-        <h2>Current tasks</h2>
+        <h2 class="tasks-header">Current tasks</h2>
 
-        <div class="tasks">
-          <div class="content">
-            <input type="text" class="text" value="My task" readonly/>
+        <hr style="max-width: 600px"/>
+
+        <div id="tasks">
+
+          <div class="task">
+            <div class="content">
+              <input type="text" class="text task-input" value="My task" readonly/>
+              <span/>
+            </div>
+            <div class="actions">
+              <button class="edit rounded-button">Edit</button>
+              <button class="delete rounded-button">Delete</button>
+            </div>
           </div>
-          <div class="actions">
-            <button class="edit rounded-button">edit</button>
-            <button class="delete rounded-button">delete</button>
-          </div>
+
         </div>
       </section>
 
@@ -81,8 +90,7 @@
 
   </div>
 
-  <!-- importing js code from main.js -->
-  <script type="module" src="/main.js"></script>
+  
 
 </body>
 

@@ -87,7 +87,6 @@ const startTimerButton = document.getElementById("timer-start");
 // task related elements
 const submitTaskButton = document.getElementById("submit-button");
 const taskSubmitBox = document.getElementById("new-task");
-const taskList = document.querySelector('.task-list');
 
 // test button
 const testButton = document.getElementById("test-button");
@@ -203,21 +202,39 @@ function changeTheme(timerLength,classTheme) {
 // [] todo: break into separate file?
 // [] todo: create profiles with classes that track user name and tasks 
 // -------------- TASK MODULE -----------------
-// display new task from input field
-submitTaskButton.addEventListener('click', function () {
-  //text submitted in new task box
-  const task = taskSubmitBox.value;
-  //new list element to be appended to task list 
-  let taskListNode = document.createElement('li');
-  //populates new list element with submitted task
-  taskListNode.appendChild(document.createTextNode(`${task}`));
-  //appends new complete list element to current task list
-  taskList.appendChild(taskListNode);
-  //console.log(task);
+const form = document.querySelector("#task-form");
+const taskInput = document.querySelector("#new-task-input");
+const taskList = document.querySelector("#tasks");
+//const taskLength = document.querySelector("#new-task-length")
 
-
-})
 
 // test button for various uses
-testButton.addEventListener('click', easyTimerTest)
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
 
+  const task = taskInput.value;
+  //const length = taskLength.value;
+
+  if ( (!task) ) {
+    alert("Please add a task and length before attempting to submit")
+  }
+
+  //create new task div
+  const taskElement = document.createElement("div");
+  taskElement.classList.add("task");
+
+  //create new task content div
+  const taskContentElement = document.createElement("div");
+  taskElement.classList.add("content");
+  taskElement.innerText = task;
+
+  //append task content to task
+  taskElement.appendChild(taskContentElement);
+
+  //append task to task list
+  taskList.appendChild(taskElement);
+
+  return;
+})
+
+console.log(form);
