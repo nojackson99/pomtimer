@@ -92,11 +92,6 @@ const taskList = document.querySelector('.task-list');
 // test button
 const testButton = document.getElementById("test-button");
 
-// set timer length buttons
-const pomodoroTimerButton = document.getElementById("pomodoro-button")
-const shortBreakButton = document.getElementById("short-break-button")
-const longBreakButton = document.getElementById("long-break-button");
-
 // app body
 const siteBody = document.getElementById("site-body");
 
@@ -116,7 +111,7 @@ const shortTheme = 'short-break-green';
 const longTheme = 'long-break-blue';
 
 
-// -------------- EVENT LISTENERS ------------
+// -------------- EVENT LISTENERS -------------
 
 // start timer function when start focus button is pressed
 startTimerButton.addEventListener('click', function () {
@@ -124,52 +119,91 @@ startTimerButton.addEventListener('click', function () {
   getCountDownDate();
 });
 
-// [] todo: fix these 3 eventListeners with map?
-// set timer length to pomadoro
-pomodoroTimerButton.addEventListener('click', function () {
+// // set timer length to pomadoro
+// pomodoroTimerButton.addEventListener('click', function () {
 
-  // set timer variable and timer display to correct length
-  desiredMinutes = workLength;
-  timerDisplay.innerHTML = `${workLength}:00`
-  startTimerButton.innerHTML = "Start Focus"
+//   // set timer variable and timer display to correct length
+//   desiredMinutes = workLength;
+//   timerDisplay.innerHTML = `${workLength}:00`
+//   startTimerButton.innerHTML = "Start Focus"
 
-  timerContainer.classList.replace('small-text', 'large-text')
-  if (siteBody.classList.contains(`${shortTheme}`)) siteBody.classList.replace(`${shortTheme}`, `${pomTheme}`)
-  else if (siteBody.classList.contains(`${longTheme}`)) siteBody.classList.replace(`${longTheme}`, `${pomTheme}`)
-  else null;
+//   timerContainer.classList.replace('small-text', 'large-text')
+//   if (siteBody.classList.contains(`${shortTheme}`)) siteBody.classList.replace(`${shortTheme}`, `${pomTheme}`)
+//   else if (siteBody.classList.contains(`${longTheme}`)) siteBody.classList.replace(`${longTheme}`, `${pomTheme}`)
+//   else null;
 
-});
-// set timer length to short break
-shortBreakButton.addEventListener('click', function () {
-  desiredMinutes = shortBreak;
-  timerDisplay.innerHTML = `${shortBreak}:00`
-  startTimerButton.innerHTML = "Start Break"
+// });
+// // set timer length to short break
+// shortBreakButton.addEventListener('click', function () {
+//   desiredMinutes = shortBreak;
+//   timerDisplay.innerHTML = `${shortBreak}:00`
+//   startTimerButton.innerHTML = "Start Break"
 
-
-  timerContainer.classList.replace('small-text', 'large-text')
-  if (siteBody.classList.contains(`${pomTheme}`)) siteBody.classList.replace(`${pomTheme}`, `${shortTheme}`)
-  else if (siteBody.classList.contains(`${longTheme}`)) siteBody.classList.replace(`${longTheme}`, `${shortTheme}`)
-  else null;
-
-});
-// set timer length to long break
-longBreakButton.addEventListener('click', function () {
-  desiredMinutes = longBreak;
-  timerDisplay.innerHTML = `${longBreak}:00`
-  startTimerButton.innerHTML = "Start Break"
+//   timerContainer.classList.replace('small-text', 'large-text')
+//   if (siteBody.classList.contains(`${pomTheme}`)) siteBody.classList.replace(`${pomTheme}`, `${shortTheme}`)
+//   else if (siteBody.classList.contains(`${longTheme}`)) siteBody.classList.replace(`${longTheme}`, `${shortTheme}`)
+//   else null;
+// });
+// // set timer length to long break
+// longBreakButton.addEventListener('click', function () {
+//   desiredMinutes = longBreak;
+//   timerDisplay.innerHTML = `${longBreak}:00`
+//   startTimerButton.innerHTML = "Start Break"
 
 
-  timerContainer.classList.replace('small-text', 'large-text')
-  if (siteBody.classList.contains(`${pomTheme}`)) siteBody.classList.replace(`${pomTheme}`, `${longTheme}`)
-  else if (siteBody.classList.contains(`${shortTheme}`)) siteBody.classList.replace(`${shortTheme}`, `${longTheme}`)
-  else null;
+//   timerContainer.classList.replace('small-text', 'large-text')
+//   if (siteBody.classList.contains(`${pomTheme}`)) siteBody.classList.replace(`${pomTheme}`, `${longTheme}`)
+//   else if (siteBody.classList.contains(`${shortTheme}`)) siteBody.classList.replace(`${shortTheme}`, `${longTheme}`)
+//   else null;
+// });
 
+// -------------- CHANGE THEME ----------------
+// This segment of code handles changing the site theme and the timer length
+// Pomodoro button will apply a red theme
+// Short Break button will apply a sea green theme
+// Long Break button will apply a blue theme
+// querySelectorAll grabs all three timer control buttons and adds event listener to each
+document.querySelectorAll('.button-flex-child').forEach(item => {
+  item.addEventListener('click', event => {
+    // using .currentTarget.inneText from event object call changeTheme() with correct theme and timer length
+    if (event.currentTarget.innerText == "Pomodoro") {
+      changeTheme(workLength,pomTheme)
+    } 
+    else if (event.currentTarget.innerText == "Short Break") {
+      changeTheme(shortBreak,shortTheme)
+    }
+    else {
+      changeTheme(longBreak,longTheme)
+    }
+  })
+})
 
-});
+// applys correct body theme, timerlength and necessary changes
+function changeTheme(timerLength,classTheme) {
+  desiredMinutes = timerLength;                     // change timer length
+  timerDisplay.innerHTML = `${timerLength}:00`;     // change timer display
 
-// display new task from input field
+  //change start timer button display
+  if(classTheme === "pomodoro-red") {
+    startTimerButton.innerHTML = "Start Focus";
+  } else {
+    startTimerButton.innerHTML = "Start Break";
+  };
+
+  //ensure large-text class is applied to timerContainer
+  //this is necessary because on timer end timer display text will be smaller to accomodate end timer message
+  timerContainer.classList.replace('small-text', 'large-text');
+
+  //change to theme class to the correct one
+  siteBody.className = `${classTheme}`;
+}
+
 // [] todo: task allignment
 // [] todo: use chrome storage to store tasks
+// [] todo: break into separate file?
+// [] todo: create profiles with classes that track user name and tasks 
+// -------------- TASK MODULE -----------------
+// display new task from input field
 submitTaskButton.addEventListener('click', function () {
   //text submitted in new task box
   const task = taskSubmitBox.value;

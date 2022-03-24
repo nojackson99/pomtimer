@@ -53,18 +53,26 @@
     <div style="padding-top: 30px; padding-bottom: 30px;">
 
       <!-- form to submit new tasks -->
-      <form style>
-        <label for="new-task">New Task:</label>
-        <input type="text" id="new-task">
+      <form class="new-task-form">
+        <input type="text" id="new-task" placeholder="What is your focus?" class="item new-task-input task-theme">
+        <input type="text" id="task-length" placeholder="How long?" class="item new-task-length task-theme">
+        <input type="submit" id="new-task-submit" value="Add task" class="animated-button smaller item new-task-submit"> 
       </form>
 
-      <!-- submit button for new task box -->
-      <button id="submit-button">Submit</button>
-
       <!-- list to display current tasks -->
-      <ul class="task-list">
-        <li>sample task</li>
-      </ul>
+      <section class="task-list">
+        <h2>Current tasks</h2>
+
+        <div class="tasks">
+          <div class="content">
+            <input type="text" class="text" value="My task" readonly/>
+          </div>
+          <div class="actions">
+            <button class="edit rounded-button">edit</button>
+            <button class="delete rounded-button">delete</button>
+          </div>
+        </div>
+      </section>
 
     </div>
 
