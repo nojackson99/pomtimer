@@ -1,5 +1,9 @@
 import Timer from "easytimer.js";
 
+export const timerDisplay = document.getElementById("timer-display");       // timer display
+export const timerContainer = document.getElementById("timer-container");   // timer container
+export const startButton = document.getElementById("timer-start")           // start timer button
+
 const timer = new Timer();
 
 export function startTimer(length, e) {

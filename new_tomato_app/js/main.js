@@ -1,27 +1,18 @@
 // -------------- IMPORTS ---------------------
 import '../style.css'
-import * as Tasks from './tasks.js'
-import * as MyTimer from './timer.js';
+import * as Tasks from './tasks.js'       //task related content
+import * as MyTimer from './timer.js';    //timer related content
 
 
-// -------------- HTML ELEMENT VARIABLES ------
-// timer display
-const timerDisplay = document.getElementById("timer-display");
-// timer container
-const timerContainer = document.getElementById("timer-container")
-// start timer button
-const startButton = document.getElementById("timer-start");
-// app body
-const siteBody = document.getElementById("site-body");
+// -------------- VARIABLES -------------------
+const siteBody = document.getElementById("site-body");   // app body
 
-
-// -------------- OTHER VARIABLES -------------
 // control pom and break lengths
 let workLength = 25;
 let shortBreak = 5;
 let longBreak = 20;
 
-// set defualt timer length to current workLength
+// set default timer length to current workLength
 let desiredMinutes = workLength;
 
 // theme classes
@@ -29,23 +20,41 @@ const pomTheme = 'pomodoro-red';
 const shortTheme = 'short-break-green';
 const longTheme = 'long-break-blue';
 
+
 // -------------- EVENT LISTENERS -------------
+// starts the timer
+MyTimer.startButton.addEventListener( 'click', (e) => {MyTimer.startTimer(desiredMinutes, e)} )
+// control adding new tasks, editing and deleting
+Tasks.form.addEventListener('submit', Tasks.newTask );
 
-startButton.addEventListener('click', (e) => {
-  MyTimer.startTimer(desiredMinutes, e);
-
-
-})
 
 // -------------- CHANGE THEME ----------------
 // This segment of code handles changing the site theme and the timer length
-// Pomodoro button will apply a red theme
-// Short Break button will apply a sea green theme
-// Long Break button will apply a blue theme
-// querySelectorAll grabs all three timer control buttons and adds event listener to each
+// applies correct site theme, timerlength and necessary changes
+function changeTheme(timerLength,classTheme) {
+  desiredMinutes = timerLength;                             // change timer length
+  MyTimer.timerDisplay.innerHTML = `${timerLength}:00`;     // change timer display
+
+  // change start timer button display
+  if(classTheme === "pomodoro-red") {
+    MyTimer.startButton.innerHTML = "Start Focus";
+  } else {
+    MyTimer.startButton.innerHTML = "Start Break";
+  };
+
+  // ensure large-text class is applied to timerContainer
+  // necessary because on timer end timer display text will be smaller to accomodate end timer message
+  MyTimer.timerContainer.classList.replace('small-text', 'large-text');
+
+  // change theme class to the correct one
+  siteBody.className = `${classTheme}`;
+}
+
+// select all three timer control buttons and add event listener to each
 document.querySelectorAll('.button-flex-child').forEach(item => {
   item.addEventListener('click', event => {
-    // using .currentTarget.inneText from event object call changeTheme() with correct theme and timer length
+    console.log('clicked');
+    // using .currentTarget.innerText from event object call changeTheme() with correct theme and timer length
     if (event.currentTarget.innerText == "Pomodoro") {
       changeTheme(workLength,pomTheme)
     } 
@@ -58,25 +67,3 @@ document.querySelectorAll('.button-flex-child').forEach(item => {
   })
 })
 
-// applys correct body theme, timerlength and necessary changes
-function changeTheme(timerLength,classTheme) {
-  desiredMinutes = timerLength;                     // change timer length
-  timerDisplay.innerHTML = `${timerLength}:00`;     // change timer display
-
-  //change start timer button display
-  if(classTheme === "pomodoro-red") {
-    startButton.innerHTML = "Start Focus";
-  } else {
-    startButton.innerHTML = "Start Break";
-  };
-
-  //ensure large-text class is applied to timerContainer
-  //this is necessary because on timer end timer display text will be smaller to accomodate end timer message
-  timerContainer.classList.replace('small-text', 'large-text');
-
-  //change to theme class to the correct one
-  siteBody.className = `${classTheme}`;
-}
-
-// control adding new tasks, editing and deleting
-Tasks.form.addEventListener('submit', Tasks.newTask );
