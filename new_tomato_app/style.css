@@ -349,3 +349,7 @@ styling for task module
 span {
 	padding: 10px;
 }
+
+.hide {
+	display: none;
+}

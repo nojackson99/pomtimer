@@ -7,13 +7,6 @@
   <!-- href is the icon shown on chrome tab -->
   <link rel="icon" type="image/svg+xml" href="./misc_project_files/PomTimer-logo-small.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- importing js code from main.js -->
-  <script type="module" src="./js/main.js"></script>
-  <!-- including jquery in project using cdn -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
-          integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
-          crossorigin="anonymous">
-  </script>
   <title>Focus Better</title>
 
   <!-- content shown above divider -->
@@ -52,6 +45,7 @@
       <!-- start focus/break button -->
       <div>
         <button id="timer-start" class="animated-button">Start Focus</button>
+        <button id="timer-pause" class="animated-button hide">Pause</button>
       </div>
 
     </div>
@@ -92,8 +86,13 @@
 
   </div>
 
-  
-
+  <!-- importing js code from main.js -->
+  <script type="module" src="./js/main.js"></script>
+  <!-- including jquery using cdn -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+          integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+          crossorigin="anonymous">
+  </script>
 </body>
 
 </html>
