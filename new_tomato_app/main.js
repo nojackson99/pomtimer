@@ -219,20 +219,61 @@ form.addEventListener('submit', (e) => {
     alert("Please add a task and length before attempting to submit")
   }
 
-  //create new task div
   const taskElement = document.createElement("div");
   taskElement.classList.add("task");
 
-  //create new task content div
-  const taskContentElement = document.createElement("div");
-  taskElement.classList.add("content");
-  taskElement.innerText = task;
+  const taskElementContent = document.createElement("div");
+  taskElementContent.classList.add("content");
 
-  //append task content to task
-  taskElement.appendChild(taskContentElement);
+  const taskElementInput = document.createElement("input");
+  taskElementInput.type = ("text");
+  taskElementInput.classList.add("text");
+  taskElementInput.classList.add("task-input");
+  taskElementInput.setAttribute("readonly", "readonly");
+  taskElementInput.value = (task);
 
-  //append task to task list
+  const taskElementActions = document.createElement("div");
+  taskElementActions.classList.add("actions");
+
+  const taskElementEdit = document.createElement("button");
+  taskElementEdit.classList.add("edit");
+  taskElementEdit.classList.add("rounded-button");
+  taskElementEdit.innerText = "Edit";
+
+  const buttonSpan = document.createElement("span")
+  buttonSpan.style = ("padding: 3px")
+
+  const taskElementDelete = document.createElement("button");
+  taskElementDelete.classList.add("delete");
+  taskElementDelete.classList.add("rounded-button");
+  taskElementDelete.innerText = "Delete";
+
   taskList.appendChild(taskElement);
+  taskElement.appendChild(taskElementContent);
+  taskElement.appendChild(taskElementActions);
+  taskElementContent.appendChild(taskElementInput);
+  taskElementContent.appendChild(document.createElement("span"));
+  taskElementActions.appendChild(taskElementEdit);
+  taskElementActions.appendChild(buttonSpan);
+  taskElementActions.appendChild(taskElementDelete);
+
+  taskElementEdit.addEventListener('click', () => {
+    if(taskElementEdit.innerText.toLowerCase() == "edit") {
+      taskElementInput.removeAttribute("readonly");
+      taskElementInput.focus();
+      taskElementEdit.innerText = "Save";
+      taskElementEdit.style = ("padding: 1px");
+    }
+    else {
+      taskElementInput.setAttribute("readonly", "readonly");
+      taskElementEdit.innerText = "Edit";
+      taskElementEdit.style = ("");
+    }
+  })
+
+  taskElementDelete.addEventListener('click', ()=> {
+    taskList.removeChild(taskElement);
+  })
 
   return;
 })
