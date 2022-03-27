@@ -23,7 +23,7 @@ const longTheme = 'long-break-blue';
 
 // -------------- EVENT LISTENERS -------------
 // starts the timer
-MyTimer.startButton.addEventListener( 'click', (e) => {MyTimer.startTimer(desiredMinutes, e)} )
+MyTimer.startButton.addEventListener( 'click', () => {MyTimer.startTimer(desiredMinutes)} )
 // control adding new tasks, editing and deleting
 Tasks.form.addEventListener('submit', Tasks.newTask );
 
@@ -34,6 +34,9 @@ Tasks.form.addEventListener('submit', Tasks.newTask );
 function changeTheme(timerLength,classTheme) {
   desiredMinutes = timerLength;                             // change timer length
   MyTimer.timerDisplay.innerHTML = `${timerLength}:00`;     // change timer display
+
+  // [] todo: create timer reset function to stop and reset timer when theme is changed
+  MyTimer.resetTimer;
 
   // change start timer button display
   if(classTheme === "pomodoro-red") {
