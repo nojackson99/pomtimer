@@ -7,6 +7,7 @@ export const form = document.querySelector("#task-form");
 const taskInput = document.querySelector("#new-task-input");
 const taskList = document.querySelector("#tasks");
 
+
 export function newTask(e) {
     e.preventDefault();
 

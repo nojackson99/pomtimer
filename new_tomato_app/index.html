@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- all head content here -->
+<!-- from divider to top of page -->
 <head>
   <meta charset="UTF-8" />
   <!-- href is the icon shown on chrome tab -->
@@ -22,7 +22,7 @@
   
 </head>
 
-<!-- all body content here -->
+<!-- all content below divider -->
 <body id="site-body" class="pomodoro-red">
 
   <div id="app">
@@ -62,12 +62,15 @@
 
       <!-- list to display current tasks -->
       <section class="task-list">
-        <h2 class="tasks-header">Current tasks</h2>
 
+        <!-- current tasks header -->
+        <h2 class="tasks-header">Current tasks</h2>
         <hr style="max-width: 600px"/>
 
+        <!-- all tasks here -->
         <div id="tasks">
 
+          <!-- sample task -->
           <div class="task">
             <div class="content">
               <input type="text" class="text task-input" value="My task" readonly/>
@@ -87,11 +90,14 @@
   </div>
 
   <!-- importing js code from main.js -->
-  <script type="module" src="./js/main.js"></script>
+  <script 
+    type="module" src="./js/main.js">
+  </script>
   <!-- including jquery using cdn -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
-          integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
-          crossorigin="anonymous">
+  <script 
+    src="https://code.jquery.com/jquery-3.6.0.min.js" 
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+    crossorigin="anonymous">
   </script>
 </body>
 
