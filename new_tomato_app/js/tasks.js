@@ -3,24 +3,36 @@
 // [X] todo: break into separate file?
 // [] todo: create profiles with objects that track user name and tasks 
 // -------------- TASK MODULE -----------------
-export const form = document.querySelector("#task-form");
-const taskInput = document.querySelector("#new-task-input");
-const taskList = document.querySelector("#tasks");
+export const form = document.querySelector("#task-form");        // new task submit form
+const taskInput = document.querySelector("#new-task-input");     // new task submit input box
+const taskLength = document.querySelector("#new-task-length");   // new task submit length box
+const taskList = document.querySelector("#tasks");               // div holding current tasks
 
 
+// creates new task when add task button is clicked in new task form
+// creates all html elements with user provided content and appends to taskList
+// creates event listeners for edit and delte buttons for the new task
 export function newTask(e) {
+    // prevents Add Task button from refreshing the page
     e.preventDefault();
 
+    // capture user input for new task and task length
     const task = taskInput.value;
+    const length = taskLength.value;
+
+    // reset form input boxes to placeholder text
     taskInput.value = "";
-    //const length = taskLength.value;
+    taskLength.value = "";
   
-    if ( (!task) ) {
+    // form validation to ensure a task and length are entered before submitting
+    if ( (!task) || (!length) ) {
       alert("Please add a task and length before attempting to submit")
 
       return;
     }
   
+
+    // creating all html elements, classes, and content necessary to display a new task
     const taskElement = document.createElement("div");
     taskElement.classList.add("task");
   
@@ -31,7 +43,7 @@ export function newTask(e) {
     taskElementInput.type = ("text");
     taskElementInput.classList.add("text");
     taskElementInput.classList.add("task-input");
-    taskElementInput.setAttribute("readonly", "readonly");
+    taskElementInput.setAttribute("readonly", "readonly");  // ensure new task can't be edited without first clicking edit button
     taskElementInput.value = (task);
   
     const taskElementActions = document.createElement("div");
@@ -50,6 +62,7 @@ export function newTask(e) {
     taskElementDelete.classList.add("rounded-button");
     taskElementDelete.innerText = "Delete";
   
+    // appending created elements properly to display a new task in list
     taskList.appendChild(taskElement);
     taskElement.appendChild(taskElementContent);
     taskElement.appendChild(taskElementActions);
@@ -59,6 +72,7 @@ export function newTask(e) {
     taskElementActions.appendChild(buttonSpan);
     taskElementActions.appendChild(taskElementDelete);
   
+    // create event listener for newly created edit button
     taskElementEdit.addEventListener('click', () => {
       if(taskElementEdit.innerText.toLowerCase() == "edit") {
         taskElementInput.removeAttribute("readonly");
@@ -73,6 +87,7 @@ export function newTask(e) {
       }
     })
   
+    // create event listener for newly creawted delete button
     taskElementDelete.addEventListener('click', ()=> {
       taskList.removeChild(taskElement);
     })
