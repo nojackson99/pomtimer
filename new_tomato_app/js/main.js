@@ -1,16 +1,18 @@
+// [] todo: break away as much code from main into modules
 // -------------- IMPORTS ---------------------
-import '../style.css'
-import * as Tasks from './tasks.js'       //task related content
+import '../style.css';
+import * as Tasks from './tasks.js';      //task related content
 import * as MyTimer from './timer.js';    //timer related content
 
 
 // -------------- VARIABLES -------------------
 const siteBody = document.getElementById("site-body");   // app body
 
+// [] todo: allow timer lengths to be changed by user
 // control pom and break lengths
-let workLength = 25;
-let shortBreak = 5;
-let longBreak = 20;
+const workLength = 25;
+const shortBreak = 5;
+const longBreak = 20;
 
 // set default timer length to current workLength
 let desiredMinutes = workLength;
@@ -23,7 +25,7 @@ const longTheme = 'long-break-blue';
 
 // -------------- EVENT LISTENERS -------------
 // starts the timer
-MyTimer.startButton.addEventListener( 'click', () => {MyTimer.startTimer(desiredMinutes)} )
+MyTimer.startButton.addEventListener( 'click', () => {MyTimer.startTimer(desiredMinutes)} );
 // control adding new tasks, editing and deleting
 Tasks.form.addEventListener('submit', Tasks.newTask );
 
@@ -35,15 +37,13 @@ function changeTheme(timerLength,classTheme) {
   desiredMinutes = timerLength;                             // change timer length
   MyTimer.timerDisplay.innerHTML = `${timerLength}:00`;     // change timer display
 
-  // [] todo: create timer reset function to stop and reset timer when theme is changed
-  MyTimer.resetTimer;
 
   // change start timer button display
   if(classTheme === "pomodoro-red") {
     MyTimer.startButton.innerHTML = "Start Focus";
   } else {
     MyTimer.startButton.innerHTML = "Start Break";
-  };
+  }
 
   // ensure large-text class is applied to timerContainer
   // necessary because on timer end timer display text will be smaller to accomodate end timer message
@@ -56,17 +56,22 @@ function changeTheme(timerLength,classTheme) {
 // select all three timer control buttons and add event listener to each
 document.querySelectorAll('.button-flex-child').forEach(item => {
   item.addEventListener('click', event => {
-    console.log('clicked');
+
+    // call resetTimer( when a timer has been started since site load
+    if (MyTimer.timerStarted) {
+      MyTimer.resetTimer(); 
+    }
+
     // using .currentTarget.innerText from event object call changeTheme() with correct theme and timer length
     if (event.currentTarget.innerText == "Pomodoro") {
-      changeTheme(workLength,pomTheme)
+      changeTheme(workLength,pomTheme);
     } 
     else if (event.currentTarget.innerText == "Short Break") {
-      changeTheme(shortBreak,shortTheme)
+      changeTheme(shortBreak,shortTheme);
     }
     else {
-      changeTheme(longBreak,longTheme)
+      changeTheme(longBreak,longTheme);
     }
   })
-})
+});
 

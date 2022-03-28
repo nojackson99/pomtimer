@@ -2,6 +2,8 @@
 // [] todo: use chrome storage to store tasks
 // [X] todo: break into separate file?
 // [] todo: create profiles with objects that track user name and tasks 
+// [] todo: create functionality to set a current task that is displayed below timer
+// [] todo: add length display for each task that updates when a focus session has ended
 // -------------- TASK MODULE -----------------
 export const form = document.querySelector("#task-form");        // new task submit form
 const taskInput = document.querySelector("#new-task-input");     // new task submit input box
@@ -26,13 +28,15 @@ export function newTask(e) {
   
     // form validation to ensure a task and length are entered before submitting
     if ( (!task) || (!length) ) {
-      alert("Please add a task and length before attempting to submit")
+      alert("Please add a task and length before attempting to submit");
 
       return;
     }
-  
+
+
 
     // creating all html elements, classes, and content necessary to display a new task
+    // ? Rewrite follwing code into one .innerHTML statement?
     const taskElement = document.createElement("div");
     taskElement.classList.add("task");
   
@@ -54,8 +58,8 @@ export function newTask(e) {
     taskElementEdit.classList.add("rounded-button");
     taskElementEdit.innerText = "Edit";
   
-    const buttonSpan = document.createElement("span")
-    buttonSpan.style = ("padding: 3px")
+    const buttonSpan = document.createElement("span");
+    buttonSpan.style = ("padding: 3px");
   
     const taskElementDelete = document.createElement("button");
     taskElementDelete.classList.add("delete");
@@ -87,10 +91,8 @@ export function newTask(e) {
       }
     })
   
-    // create event listener for newly creawted delete button
+    // create event listener for newly created delete button
     taskElementDelete.addEventListener('click', ()=> {
       taskList.removeChild(taskElement);
     })
-  
-    return;
 }
