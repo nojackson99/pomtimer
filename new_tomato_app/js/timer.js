@@ -34,7 +34,7 @@ export function resetTimer() {
 }
 
 // starts new timer at given length
-export function startTimer(lengthInMinutes) {
+function startTimer(lengthInMinutes) {
 
     // resume timer if paused
     if(timer.isPaused()) {
@@ -137,3 +137,6 @@ timer.addEventListener('targetAchieved', () => {
     pauseButton.classList.add('hide');
 
 });
+
+// starts the timer
+startButton.addEventListener( 'click', () => {startTimer(Theme.desiredMinutes)} );
