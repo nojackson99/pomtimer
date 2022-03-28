@@ -160,7 +160,7 @@ BODY CLASSES
 	margin: auto;
     padding: 40px;
     width: 550px;
-    height: 295px;
+    height: 320px;
 	background-color: var(--accent);
 	transition: background-color 750ms ease-in-out;
 }
@@ -234,7 +234,7 @@ countdown timer styling
 
 /* 
 -------------------------------
-styling for button below timer
+styling for content below timer
 ------------------------------- 
 */
 
@@ -254,14 +254,24 @@ styling for button below timer
 	box-shadow: 0 9px #999;
 	font-weight: bold;
 	transition: color 750ms ease-in-out; 
-  }
-    
-  .animated-button:active {
+}
+ 
+/* provides animation for button click */
+.animated-button:active {
 	background-color: white;
 	box-shadow: 0 5px #666;
 	transform: translateY(4px);
-  }
+}
 
+/* apply to element to hide it */
+.hide {
+	display: none;
+}
+
+.active-task {
+	padding-top: 10px;
+	color: #C0C0C0;
+}
 
 /*
 -------------------------------
@@ -348,8 +358,4 @@ styling for task module
 
 span {
 	padding: 10px;
-}
-
-.hide {
-	display: none;
 }
