@@ -8,30 +8,30 @@ import * as MyTimer from './timer.js';    //timer associated code
 import * as Tasks from './tasks.js';      //task associated code
 
 // -------------- VARIABLES -------------------
-const siteBody = document.getElementById("site-body");   // app body
+export const siteBody = document.getElementById("site-body");   // app body
 
 // theme classes
-const pomTheme = 'pomodoro-red';
-const shortTheme = 'short-break-green';
-const longTheme = 'long-break-blue';
+export const pomTheme = 'pomodoro-red';
+export const shortTheme = 'short-break-green';
+export const longTheme = 'long-break-blue';
 
 // [] todo: allow timer lengths to be changed by user
 // control pom and break lengths
-const workLength = 25;
-const shortBreak = 5;
-const longBreak = 20;
+export const workLength = .1;
+export const shortBreak = 5;
+export const longBreak = 20;
 
 // set default timer length to current workLength
 export let desiredMinutes = workLength;
 
 
-function changeTheme(timerLength,classTheme) {
+export function changeTheme(timerLength,classTheme) {
     desiredMinutes = timerLength;                             // change timer length
     MyTimer.timerDisplay.innerHTML = `${timerLength}:00`;     // change timer display
   
   
     // change start timer button display
-    if(classTheme === "pomodoro-red") {
+    if(classTheme === pomTheme) {
       MyTimer.startButton.innerHTML = "Start Focus";
     } else {
       MyTimer.startButton.innerHTML = "Start Break";
