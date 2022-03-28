@@ -1,10 +1,15 @@
+// -------------- tasks.js --------------------
+// Holds code associated with creating, editing, and deleting tasks
+// --------------------------------------------
 // [X] todo: task allignment
 // [] todo: use chrome storage to store tasks
 // [X] todo: break into separate file?
 // [] todo: create profiles with objects that track user name and tasks 
 // [] todo: create functionality to set a current task that is displayed below timer
 // [] todo: add length display for each task that updates when a focus session has ended
-// -------------- TASK MODULE -----------------
+
+
+// -------------- Variables -------------------
 export const form = document.querySelector("#task-form");        // new task submit form
 const taskInput = document.querySelector("#new-task-input");     // new task submit input box
 const taskLength = document.querySelector("#new-task-length");   // new task submit length box
