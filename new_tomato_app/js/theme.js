@@ -17,7 +17,7 @@ export const longTheme = 'long-break-blue';
 
 // [] todo: allow timer lengths to be changed by user
 // control pom and break lengths
-export const workLength = .1;
+export const workLength = 25;
 export const shortBreak = 5;
 export const longBreak = 20;
 

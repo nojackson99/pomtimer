@@ -123,7 +123,7 @@ timer.addEventListener('targetAchieved', () => {
             workSessionNumber = 0;
             // switch theme to long break
             Theme.changeTheme(Theme.longBreak,Theme.longTheme);
-        // swithc theme to short break
+        // switch theme to short break
         } else {
             Theme.changeTheme(Theme.shortBreak,Theme.shortTheme);
         }

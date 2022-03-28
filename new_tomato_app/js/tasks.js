@@ -23,16 +23,19 @@ export function newTask(e) {
     // prevents Add Task button from refreshing the page
     e.preventDefault();
 
+    //placeholder to allow  changing later
+    let taskProgress = 0;
+
     // capture user input for new task and task length
-    const task = taskInput.value;
-    const length = taskLength.value;
+    let taskInputContent = taskInput.value;
+    const taskLengthContent = taskLength.value;
 
     // reset form input boxes to placeholder text
     taskInput.value = "";
     taskLength.value = "";
   
     // form validation to ensure a task and length are entered before submitting
-    if ( (!task) || (!length) ) {
+    if ( (!taskInputContent) || (!taskLengthContent) ) {
       alert("Please add a task and length before attempting to submit");
 
       return;
@@ -53,7 +56,7 @@ export function newTask(e) {
     taskElementInput.classList.add("text");
     taskElementInput.classList.add("task-input");
     taskElementInput.setAttribute("readonly", "readonly");  // ensure new task can't be edited without first clicking edit button
-    taskElementInput.value = (task);
+    taskElementInput.value = (`${taskProgress}/${taskLengthContent} | ${taskInputContent}`);
   
     const taskElementActions = document.createElement("div");
     taskElementActions.classList.add("actions");
@@ -84,6 +87,7 @@ export function newTask(e) {
     // create event listener for newly created edit button
     taskElementEdit.addEventListener('click', () => {
       if(taskElementEdit.innerText.toLowerCase() == "edit") {
+        taskElementInput.value = (`${taskInputContent}`);
         taskElementInput.removeAttribute("readonly");
         taskElementInput.focus();
         taskElementEdit.innerText = "Save";
@@ -93,6 +97,8 @@ export function newTask(e) {
         taskElementInput.setAttribute("readonly", "readonly");
         taskElementEdit.innerText = "Edit";
         taskElementEdit.style = ("");
+        taskInputContent = taskElementInput.value
+        taskElementInput.value = (`${taskProgress}/${taskLengthContent} | ${taskInputContent}`);
       }
     })
   
