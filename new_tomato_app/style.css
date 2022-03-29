@@ -60,14 +60,8 @@ body {
 HEAD CLASSES
 =============================================
 */
-.no-border-curve {
-	border-radius: 0px;
-} 
 
-.dropdown {
-	position: relative;
-	display: inline-block;
-}
+
   
 .dropdown-content {
 	display: none;
@@ -103,24 +97,30 @@ HEAD CLASSES
 
 /* head text classes */
 .head-content-flex {
-  display: flex;
-  align-items: center;
-  color: white;
-  font-size: 22px;
-  justify-content: space-evenly;
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 22px;
+    /* justify-content: center; */
 }
 
-/* .flex-child {
-  flex: 1;
-} */
+.box {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+}
 
-.flex-child:first-child {
-	/* padding-top: -20px; */
+.head-content-flex:first-child > div {
+	margin-right: auto;
+}
+
+.head-content-flex:last-child > button {
+	margin-left: auto;
 }
 
 .header-button {
 	display: inline-block;
-	padding: 15px 25px;
+	padding: 8px 25px;
 	font-size: 22px;
 	cursor: pointer;
 	text-decoration: none;
@@ -131,19 +131,6 @@ HEAD CLASSES
 	border-radius: 10px;
 	font-weight: bold;
 }
-
-.center {
-	position: absolute !important;
-	justify-content: center !important;
-}
-
-/* .head-title {
-  align-self: center;
-}
-
-.head-credit {
-  align-self: right;
-} */
 
 .divider
 {
