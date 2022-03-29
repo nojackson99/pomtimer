@@ -8,6 +8,8 @@
 // [] todo: create functionality to set a current task that is displayed below timer
 // [] todo: add length display for each task that updates when a focus session has ended
 
+import * as MyTimer from './timer.js';    //timer associated code
+
 
 // -------------- Variables -------------------
 const form = document.querySelector("#task-form");        // new task submit form
@@ -105,6 +107,11 @@ function newTask(e) {
     // create event listener for newly created delete button
     taskElementDelete.addEventListener('click', ()=> {
       taskList.removeChild(taskElement);
+    })
+
+    // clicking task box makes this task active
+    taskElementInput.addEventListener('click', ()=> {
+     MyTimer.activeTask.innerText = `${taskProgress}/${taskLengthContent} | ${taskInputContent}`;
     })
 }
 

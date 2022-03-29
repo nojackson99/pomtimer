@@ -15,6 +15,7 @@ export let timerStarted = false;                                            // t
 const pauseButton = document.getElementById("timer-pause");                 // pause state for play/pause button
 let workSessionNumber = 0;                                                  // tracks work session current number
 let longBreakInterval = 3;                                                  // tracks when to trigger a long break
+export const activeTask = document.querySelector("#active-task")
 
 // create new easytimer.js timer object;
 export let timer = new Timer();

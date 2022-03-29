@@ -439,6 +439,11 @@ styling for task module
 	font-size: 1.2rem;
 	color: white;
 	border-radius: 5px;
+	cursor: pointer;
+}
+
+.task-input:hover  {
+	filter: brightness(95%);
 }
 
 .tasks-header {
