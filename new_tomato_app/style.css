@@ -132,6 +132,11 @@ HEAD CLASSES
 	font-weight: bold;
 }
 
+.center {
+	position: absolute !important;
+	justify-content: center !important;
+}
+
 /* .head-title {
   align-self: center;
 }

@@ -16,3 +16,16 @@ import '../style.css';
 import * as Tasks from './tasks.js';      //task associated code
 import * as MyTimer from './timer.js';    //timer associated code
 import * as Theme from './theme.js';      //theme associated code
+
+const newProfileButton = document.querySelector("#create-new-profile")
+const newProfileModal = document.querySelector("#new-profile-modal")
+const closeProfileModal = document.querySelector("#close-profile-modal")
+
+newProfileButton.addEventListener('click', ()=> {
+    console.log('clicked');
+    newProfileModal.showModal();
+})
+
+closeProfileModal.addEventListener('click', ()=> {
+    newProfileModal.close();
+})
