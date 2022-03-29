@@ -1,15 +1,25 @@
 const newProfileButton = document.querySelector("#create-new-profile")
-const openProfileModal = document.querySelector("#new-profile-modal")
+const profileModal = document.querySelector("#new-profile-modal")
 const closeProfileModal = document.querySelector("#close-profile-modal")
 
-const setttingsButton = document.querySelector("#settings-button")
-// const 
+const settingsButton = document.querySelector("#settings-button")
+const settingsModal = document.querySelector("#settings-modal")
+const closeSettingsModal = document.querySelector("#close-settings-modal") 
 
 newProfileButton.addEventListener('click', ()=> {
     console.log('clicked');
-    openProfileModal.showModal();
+    profileModal.showModal();
 })
 
 closeProfileModal.addEventListener('click', ()=> {
-    openProfileModal.close();
+    profileModal.close();
+})
+
+settingsButton.addEventListener('click', ()=> {
+    console.log('clicked');
+    settingsModal.showModal();
+})
+
+closeSettingsModal.addEventListener('click', ()=> {
+    settingsModal.close();
 })

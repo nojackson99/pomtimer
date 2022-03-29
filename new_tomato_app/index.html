@@ -34,20 +34,51 @@
     </div>
 
     <div class="box">
-      <button class="header-button" id="setings-button">Settings</button>
+      <button class="header-button" id="settings-button">Settings</button>
     </div>
     
 
-    <dialog class="modal2" id="new-profile-modal">
-        <p>content for creating a new profile here</p>
-        <button id="close-profile-modal">close</button>
+    <dialog class="modal" id="new-profile-modal">
+      <div style ="display: inline;">
+        <p class = "modal-title">Create New Profile</p>
+        <p class="close" id="close-profile-modal"></p>
+      </div>
+        <hr/>
+        <form action="" class="modal-form" autocomplete="off">
+          <label for="first-name">First Name</label>
+          <input type="text"  name="first-name" id="new-profile-first-name">
+          <label for="last-name">Last Name</label>
+          <input type="text" name="last-name" id="new-profile-last-name">
+          <label for="username">Username</label>
+          <input type="text" name="username" id="new-profile-username">
+          <input type="submit" id="new-profile-submit">
+        </form>
+        <hr/>
+        <button id="submit-new-profile">Submit</button>
     </dialog>
   
-    <dialog class="modal" id="setings-modal">
-        <p>content for settings here</p>
-        <button>close</button>
+    <dialog class="modal" id="settings-modal">
+        <h1 class="modal-title">Settings</h1>
+        <p class="close" id="close-settings-modal"></p>
+        <hr/>
+        <form action="" class="modal-form" autocomplete="off">
+          <label for="pomodoro-length">Pomodoro</label>
+          <input type="number"  name="pomodoro-length" id="pomodoro-length">
+          <label for="short-length">Short Break</label>
+          <input type="number" name="short-length" id="settings-short-length">
+          <label for="long-length">Long Break</label>
+          <input type="number" name="long-length" id="settings-long-length">
+          <input type="submit" id="new-profile-submit">
+        </form>
+        <hr/>
     </dialog>
   </div>
+
+  <!-- <form id="task-form" class="new-task-form" autocomplete="off">
+    <input type="text" id="new-task-input" placeholder="What is your focus?" class="item new-task-input task-theme">
+    <input type="number" id="new-task-length" placeholder="Length?" class="item new-task-length task-theme">
+    <input type="submit" id="new-task-submit" value="Add task" class="animated-button smaller item new-task-submit"> 
+  </form> -->
 
   
 
