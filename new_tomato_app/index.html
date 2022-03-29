@@ -13,13 +13,12 @@
   <div class="head-content-flex">
     <div class="box">
 
-      <div class="dropdown">
+      <div class="dropdown" >
       
         <button class="header-button" style="justify-content: left;">Profile: nojackson99</button>
         
-        <div class="dropdown-content">
+        <div class="dropdown-content" id="dropdown-content">
           <p id="create-new-profile">Create New Profile</p>
-        
         </div>
       </div>
 
@@ -41,31 +40,30 @@
         <p class="close" id="close-profile-modal"></p>
       </div>
         <hr/>
-        <form action="" class="modal-form" autocomplete="off">
+        <form class="modal-form" autocomplete="off" method="dialog">
           <label for="first-name">First Name</label>
-          <input type="text"  name="first-name" id="new-profile-first-name">
+          <input type="text"  name="first-name" id="new-profile-first-name" autocomplete="no">
           <label for="last-name">Last Name</label>
-          <input type="text" name="last-name" id="new-profile-last-name">
+          <input type="text" name="last-name" id="new-profile-last-name" autocomplete="no">
           <label for="username">Username</label>
-          <input type="text" name="username" id="new-profile-username">
+          <input type="text" name="username" id="new-profile-username" autocomplete="off">
           <input type="submit" id="new-profile-submit">
         </form>
         <hr/>
-        <button id="submit-new-profile">Submit</button>
     </dialog>
   
     <dialog class="modal" id="settings-modal">
         <h1 class="modal-title">Session Lengths</h1>
         <p class="close" id="close-settings-modal"></p>
         <hr/>
-        <form action="" class="modal-form" autocomplete="off">
+        <form class="modal-form" autocomplete="off" method="dialog">
           <label for="pomodoro-length">Pomodoro</label>
           <input type="number"  name="pomodoro-length" id="pomodoro-length">
           <label for="short-length">Short Break</label>
           <input type="number" name="short-length" id="settings-short-length">
           <label for="long-length">Long Break</label>
           <input type="number" name="long-length" id="settings-long-length">
-          <input type="submit" id="new-profile-submit">
+          <input type="submit" id="settings-submit">
         </form>
         <hr/>
     </dialog>

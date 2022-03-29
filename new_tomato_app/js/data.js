@@ -1,14 +1,20 @@
+import * as Header from './header.js';
+
 const profilesArray = [];
 
-const profile = {
-    ID: 0,
-    firstName: "",
-    lastName: "",
-    username: "",
-    tasksArray: []
+//holds next profile ID
+let nextProfileID = 0;
 
-    //support methods
-}
+
+// const profile = {
+//     id: 0,
+//     firstName: "",
+//     lastName: "",
+//     username: "",
+//     tasksArray: []
+
+//     //support methods
+// }
 
 const task = {
     description: "",
@@ -19,50 +25,76 @@ const task = {
     //support methods
 }
 
-console.log(profilesArray);
+//const profilesArray = [];
 
-profilesArray[0] = {
-    ID: 0,
-    firstName: "Noah",
-    lastName: "Jackson",
-    username: "nojackson99",
-    tasksArray: []
+console.log(Header.dropdownContent);
 
-    //support methods
-};
 
-profilesArray[1]= {
-    ID: 1,
-    firstName: "alyssa",
-    lastName: "kelley",
-    username: "akelley883",
-    tasksArray: []
+Header.newProfileSubmit.addEventListener('click', (e)=> {
+    e.preventDefault();
 
-    //support methods
-};
+    Header.profileModal.close();
 
-profilesArray.push(
-    {
-        ID: 1,
-        firstName: "alyssa",
-        lastName: "kelley",
-        username: "akelley883",
-        tasksArray: []
-    
-        //support methods
-    }
-);
+    const myid = nextProfileID;
+    nextProfileID++;
 
-function createNewProfile (fName,lName,uName) {
+    const fName = Header.newProfileFirstName.value;
+    const lName = Header.newProfileLastName.value;
+    const uName = Header.newProfileUsername.value;
+
     profilesArray.push(
         {
-            ID: 1,
-            firstName: "alyssa",
-            lastName: "kelley",
-            username: "akelley883",
+            id: myid,
+            firstName: fName,
+            lastName: lName,
+            username: uName,
             tasksArray: []
         
             //support methods
         }
     )
-}
+
+    let profileMenuElement = document.createElement("p");
+    profileMenuElement.innerText = `${uName}`;
+
+    console.log(profileMenuElement);
+
+    Header.dropdownContent.appendChild(profileMenuElement);
+
+
+    console.log(profilesArray);
+})
+
+// console.log(profilesArray);
+
+// profilesArray[0] = {
+//     ID: 0,
+//     firstName: "Noah",
+//     lastName: "Jackson",
+//     username: "nojackson99",
+//     tasksArray: []
+
+//     //support methods
+// };
+
+// profilesArray[1]= {
+//     ID: 1,
+//     firstName: "alyssa",
+//     lastName: "kelley",
+//     username: "akelley883",
+//     tasksArray: []
+
+//     //support methods
+// };
+
+// profilesArray.push(
+//     {
+//         ID: 1,
+//         firstName: "alyssa",
+//         lastName: "kelley",
+//         username: "akelley883",
+//         tasksArray: []
+    
+//         //support methods
+//     }
+// );

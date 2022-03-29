@@ -46,7 +46,6 @@ function newTask(e) {
 
 
     // creating all html elements, classes, and content necessary to display a new task
-    // ? Rewrite follwing code into one .innerHTML statement?
     const taskElement = document.createElement("div");
     taskElement.classList.add("task");
   
