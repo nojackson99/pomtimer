@@ -19,5 +19,16 @@ import * as Theme from './theme.js';      //theme associated code
 import * as Header from './header.js';
 import * as Data from './data.js';
 
+const testButton = document.querySelector("#test-button");
+
+testButton.addEventListener('click', ()=> {
+    console.log(`active profile object:`)
+    console.log(Data.activeProfile.tasksArray[0]);
+
+    console.log(`objects retrieved from profilesArray`)
+    console.log(Data.profilesArray[0].tasksArray[0]);
+    console.log(Data.profilesArray[1].tasksArray[0]);
+})
+
 
 

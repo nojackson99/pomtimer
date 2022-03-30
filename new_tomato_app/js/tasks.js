@@ -9,21 +9,21 @@
 // [] todo: add length display for each task that updates when a focus session has ended
 
 import * as MyTimer from './timer.js';    //timer associated code
+import * as Data from './data.js';
 
 
 // -------------- Variables -------------------
 const form = document.querySelector("#task-form");        // new task submit form
-const taskInput = document.querySelector("#new-task-input");     // new task submit input box
-const taskLength = document.querySelector("#new-task-length");   // new task submit length box
+export const taskInput = document.querySelector("#new-task-input");     // new task submit input box
+export const taskLength = document.querySelector("#new-task-length");   // new task submit length box
 const taskList = document.querySelector("#tasks");               // div holding current tasks
 export const tasksHeader = document.querySelector("#tasks-header");
 
 // creates new task when add task button is clicked in new task form
 // creates all html elements with user provided content and appends to taskList
 // creates event listeners for edit and delte buttons for the new task
-function newTask(e) {
+function displayTask(e) {
     // prevents Add Task button from refreshing the page
-    e.preventDefault();
 
     //placeholder to allow  changing later
     let taskProgress = 0;
@@ -114,5 +114,17 @@ function newTask(e) {
     })
 }
 
+
 // control adding new tasks, editing and deleting
-form.addEventListener('submit', newTask );
+form.addEventListener('submit', (e)=> {
+  e.preventDefault();
+
+  if(Data.activeProfile) {
+    displayTask();
+    Data.writeTaskToProfile();
+  }
+  else {
+    alert("Please create a profile before attempting to submit a task.")
+  }
+  
+});

@@ -1,11 +1,11 @@
 import * as Header from './header.js';
 import * as Tasks from './tasks.js';
 
-const profilesArray = [];
+export const profilesArray = [];
 
 //holds next profile ID
 let nextProfileID = 0;
-let activeProfile = null;
+export let activeProfile = null;
 
 // const task = {
 //     description: "",
@@ -15,6 +15,20 @@ let activeProfile = null;
 
 //     support methods
 // }
+
+export function writeTaskToProfile() {
+    const taskDescription = Tasks.taskInput.value
+    const taskLength = Tasks.taskLength.value
+
+    activeProfile.tasksArray.push({
+        description: taskDescription,
+        sessionsCurrent: 0,
+        sessionsTotal: taskLength,
+        taskComplete: false
+    });
+
+
+}
 
 // add new profile to profilesArray
 Header.newProfileSubmit.addEventListener('click', (e)=> {
@@ -32,6 +46,7 @@ Header.newProfileSubmit.addEventListener('click', (e)=> {
     profilesArray.push(
         {
             id: myid,
+            nextTaskID: 0,
             firstName: fName,
             lastName: lName,
             username: uName,
@@ -56,7 +71,16 @@ Header.newProfileSubmit.addEventListener('click', (e)=> {
 })
 
 function setActiveProfile(uName) {
-    activeProfile = uName;
+    
+    for (let i = 0; i < profilesArray.length; i++) {
+        if (uName === profilesArray[i].username) {
+            activeProfile = profilesArray[i];
+            break;
+        }
+    }
+
+    console.log(`active profile is`);
+    console.log(activeProfile);
 
     Tasks.tasksHeader.innerText = `Tasks: ${uName}`    
 }
@@ -67,6 +91,7 @@ function setActiveProfile(uName) {
 
 // profilesArray[0] = {
 //     ID: 0,
+//     nextTaskID: 0,
 //     firstName: "Noah",
 //     lastName: "Jackson",
 //     username: "nojackson99",
