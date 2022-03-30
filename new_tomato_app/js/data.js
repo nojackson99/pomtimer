@@ -180,8 +180,5 @@ testButton.addEventListener('click', ()=> {
 
 const testButton2 = document.querySelector("#test-button2")
 testButton2.addEventListener('click', ()=> {
-    console.log(`active profile`)
-    console.log(activeProfile);
-
     updateSessionsCurrent();
 });
