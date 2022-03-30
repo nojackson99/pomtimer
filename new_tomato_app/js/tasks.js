@@ -101,6 +101,7 @@ function displayTask(e) {
   
     // create event listener for newly created delete button
     taskElementDelete.addEventListener('click', ()=> {
+      Data.deleteTask(taskInputContent);
       taskList.removeChild(taskElement);
     })
 

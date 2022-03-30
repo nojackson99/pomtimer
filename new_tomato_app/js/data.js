@@ -1,5 +1,7 @@
+import Timer from 'easytimer.js';
 import * as Header from './header.js';
 import * as Tasks from './tasks.js';
+import * as MyTimer from './timer.js';
 
 // array to hold all profile objects
 export const profilesArray = [];
@@ -55,8 +57,6 @@ function setActiveProfile(uName) {
 
     // console.log(foundItem);
 
-    console.log(`active profile is`);
-    console.log(activeProfile);
 
     // ! Remove comments when done debugging tag: D1
     // update active profile display
@@ -111,8 +111,22 @@ Header.newProfileSubmit.addEventListener('click', ()=> {
     newProfileSubmit(fName,lName,uName)
 });
 
-export function deleteTask() {
+export function deleteTask(taskInputContent) {
 
+    console.log(taskInputContent);
+    console.log(MyTimer.activeTask.innerText);
+
+
+    if(MyTimer.activeTask.innerText.includes(taskInputContent)) {
+        MyTimer.activeTask.innerText = "Active task shown here"
+    }
+
+    // [] todo: replace this for loop with .find method
+    for (let i = 0; i < activeProfile.tasksArray.length; i++) {
+        if (taskInputContent === activeProfile.tasksArray[i].description) {
+            activeProfile.tasksArray.splice(i,1);
+        }
+    }
 }
 
 
