@@ -31,10 +31,6 @@ function displayTask(e) {
     // capture user input for new task and task length
     let taskInputContent = taskInput.value;
     const taskLengthContent = taskLength.value;
-
-    // reset form input boxes to placeholder text
-    taskInput.value = "";
-    taskLength.value = "";
   
     // form validation to ensure a task and length are entered before submitting
     if ( (!taskInputContent) || (!taskLengthContent) ) {

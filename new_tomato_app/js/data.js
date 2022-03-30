@@ -5,8 +5,9 @@ import * as Tasks from './tasks.js';
 export const profilesArray = [];
 
 //holds next profile ID
-let nextProfileID = 0;             // tracks available id for profile instantiation 
-export let activeProfile = null;   // tracks the current active profile
+let nextProfileID = 0;             // tracks available id for profile instantiation
+ 
+export let activeProfile = null;   // holds the current activeProfile as an object
 
 // writes task submitted throuhg new task form to activeProfile.taskArray
 export function writeTaskToProfile() {
@@ -14,6 +15,15 @@ export function writeTaskToProfile() {
     // gets task description and length from new task form
     const taskDescription = Tasks.taskInput.value
     const taskLength = Tasks.taskLength.value
+
+    // reset form input boxes to placeholder text
+    Tasks.taskInput.value = "";
+    Tasks.taskLength.value = "";
+
+    console.log(`Task Descripton: ${taskDescription}`)
+    console.log(`Task Length: ${taskLength}`)
+
+    console.log
 
     // pushes a new task object to tasksArray
     activeProfile.tasksArray.push({
@@ -25,47 +35,6 @@ export function writeTaskToProfile() {
 
 
 }
-
-// add new profile to profilesArray
-Header.newProfileSubmit.addEventListener('click', (e)=> {
-
-    // close profile modal on successful submission of form
-    Header.profileModal.close();
-
-    // get nextProfileID to set as ID for new profile object
-    const myid = nextProfileID;
-    nextProfileID++;
-
-    const fName = Header.newProfileFirstName.value;
-    const lName = Header.newProfileLastName.value;
-    const uName = Header.newProfileUsername.value;
-
-    profilesArray.push(
-        {
-            id: myid,
-            nextTaskID: 0,
-            firstName: fName,
-            lastName: lName,
-            username: uName,
-            tasksArray: []
-        
-        }
-    )
-
-    // set profile to active
-    setActiveProfile(uName);
-
-    // add new profile html element to profile menu
-    let profileMenuElement = document.createElement("p");
-    profileMenuElement.innerText = `${uName}`;
-    Header.dropdownContent.appendChild(profileMenuElement);
-
-    // set event listener to update activeProfile when profile is clicked in menu
-    profileMenuElement.addEventListener('click', (e)=> {
-        setActiveProfile(e.currentTarget.innerText)
-    })
-        
-})
 
 // updates the active profile
 function setActiveProfile(uName) {
@@ -80,15 +49,75 @@ function setActiveProfile(uName) {
     }
 
     // [] todo: replace for loop search with .find array method
-    const foundItem = profilesArray.find((item) => {
-        return item.id;
-    })
+    // const foundItem = profilesArray.find((item) => {
+    //     return item.id;
+    // })
 
-    console.log(foundItem);
+    // console.log(foundItem);
 
     console.log(`active profile is`);
     console.log(activeProfile);
 
+    // ! Remove comments when done debugging tag: D1
     // update active profile display
-    Tasks.tasksHeader.innerText = `Tasks: ${uName}`    
+    //Tasks.tasksHeader.innerText = `Tasks: ${uName}`
+    
+    // ! Debug code below remove when doen debugging tag: D1
+    const tasksHeader = document.querySelector("#tasks-header");
+    tasksHeader.innerText = `Tasks:  ${uName}`;
 }
+
+export function newProfileSubmit(fName,lName,uName) {
+    // close profile modal on successful submission of form
+    Header.profileModal.close();
+
+    // get nextProfileID to set as ID for new profile object
+    const myid = nextProfileID;
+    nextProfileID++;
+    
+    
+    
+    profilesArray.push(
+        {
+            id: myid,
+            nextTaskID: 0,
+            firstName: fName,
+            lastName: lName,
+            username: uName,
+            tasksArray: []
+        
+        }
+    )
+    
+    // set profile to active
+    setActiveProfile(uName);
+    
+    // add new profile html element to profile menu
+    let profileMenuElement = document.createElement("p");
+    profileMenuElement.innerText = `${uName}`;
+    Header.dropdownContent.appendChild(profileMenuElement);
+    
+    // set event listener to update activeProfile when profile is clicked in menu
+    profileMenuElement.addEventListener('click', (e)=> {
+        setActiveProfile(e.currentTarget.innerText)
+    })
+}
+
+// add new profile to profilesArray
+Header.newProfileSubmit.addEventListener('click', ()=> {
+    const fName = Header.newProfileFirstName.value;
+    const lName = Header.newProfileLastName.value;
+    const uName = Header.newProfileUsername.value;
+    newProfileSubmit(fName,lName,uName)
+});
+
+export function deleteTask() {
+
+}
+
+
+// ! Profile and task debug code remove when finished debugging tag: D1
+newProfileSubmit('Noah','Jackson','nojackson99')
+newProfileSubmit('Alyssa','Kelley','akelley883')
+
+
