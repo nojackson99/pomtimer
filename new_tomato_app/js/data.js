@@ -12,30 +12,16 @@ let nextProfileID = 0;             // tracks available id for profile instantiat
 export let activeProfile = null;   // holds the current activeProfile as an object
 
 // writes task submitted throuhg new task form to activeProfile.taskArray
-export function writeTaskToProfile() {
-
-    // gets task description and length from new task form
-    const taskDescription = Tasks.taskInput.value
-    const taskLength = Tasks.taskLength.value
-
-    // reset form input boxes to placeholder text
-    Tasks.taskInput.value = "";
-    Tasks.taskLength.value = "";
-
-    console.log(`Task Descripton: ${taskDescription}`)
-    console.log(`Task Length: ${taskLength}`)
-
-    console.log
+export function writeTaskToProfile(taskInput,taskLength) {    
 
     // pushes a new task object to tasksArray
+    // [] todo: add task id
     activeProfile.tasksArray.push({
-        description: taskDescription,   // description of the task
+        description: taskInput,   // description of the task
         sessionsCurrent: 0,             // tracks pomodoro sessions completed working on tasks
         sessionsTotal: taskLength,      // tracks total pomodoro session goal for task
         taskComplete: false             // tracks if task is considered complete by user
     });
-
-
 }
 
 // updates the active profile
@@ -103,13 +89,7 @@ export function newProfileSubmit(fName,lName,uName) {
     })
 }
 
-// add new profile to profilesArray
-Header.newProfileSubmit.addEventListener('click', ()=> {
-    const fName = Header.newProfileFirstName.value;
-    const lName = Header.newProfileLastName.value;
-    const uName = Header.newProfileUsername.value;
-    newProfileSubmit(fName,lName,uName)
-});
+
 
 export function deleteTask(taskInputContent) {
 
@@ -118,6 +98,11 @@ export function deleteTask(taskInputContent) {
 
 
     if(MyTimer.activeTask.innerText.includes(taskInputContent)) {
+        if (MyTimer.activeTask.classList.contains("strikethrough")) {
+            MyTimer.activeTask.classList.remove("strikethrough");
+        }
+
+        console.log(`in delte task if`)
         MyTimer.activeTask.innerText = "Active task shown here"
     }
 
@@ -129,9 +114,74 @@ export function deleteTask(taskInputContent) {
     }
 }
 
+// ! bug when adding two tasks then trying to correctly identify last task as active using updateSessionsCurrent null is returned
+// updates profilesArray.tasksArray correctly when a session ends
+export function updateSessionsCurrent() {
+
+    let taskTempObject = null;
+
+    // holds the index needed for task list children of active task
+    let taskListChildNum = null;
+
+    //update task object in activeProfile.tasksArray
+    // get active task
+    const taskTemp = MyTimer.activeTask.innerText.slice(6);
+
+    // search active profile object for active  task
+    for (let i = 0; i < activeProfile.tasksArray.length; i++) {
+        // once found set to taskkTempObject
+        if (activeProfile.tasksArray[i].description === taskTemp) {
+            taskTempObject = activeProfile.tasksArray[i]
+
+            // increment sessions spent working on task
+            taskTempObject.sessionsCurrent++;
+
+            // if session total reached  set task complete to true
+            if (taskTempObject.sessionsCurrent === parseInt(taskTempObject.sessionsTotal)) {
+                taskTempObject.taskComplete = true;
+            }
+
+            taskListChildNum = i;
+            break;
+        }
+    }
+
+    const taskListChildren = Tasks.taskList.children;                           // child nodes of taskList element
+    const activeTaskChild =  taskListChildren.item(taskListChildNum);           // dom node of active task
+    const tempTaskInput = activeTaskChild.firstElementChild.firstElementChild   // display content of active task dom node
+
+    // if on session end task is complete
+    if (taskTempObject.taskComplete === true) {
+        // update task display in active task and in task list correctly
+        MyTimer.activeTask.innerText = taskTemp;
+        MyTimer.activeTask.classList.add("strikethrough");
+        tempTaskInput.value = taskTemp;
+        tempTaskInput.classList.add("strikethrough");
+    }
+    // if task is not complete update number without strikethrough
+    else {
+        MyTimer.activeTask.innerText = `${taskTempObject.sessionsCurrent}/${taskTempObject.sessionsTotal} | ${taskTemp}`
+        tempTaskInput.value = `${taskTempObject.sessionsCurrent}/${taskTempObject.sessionsTotal} | ${taskTemp}`
+    }
+}
+
 
 // ! Profile and task debug code remove when finished debugging tag: D1
-newProfileSubmit('Noah','Jackson','nojackson99')
-newProfileSubmit('Alyssa','Kelley','akelley883')
+const testButton =  document.querySelector("#test-button")
+testButton.addEventListener('click', ()=> {
+    newProfileSubmit('Noah','Jackson','nojackson99')
+    newProfileSubmit('Alyssa','Kelley','akelley883')
 
+    writeTaskToProfile('this is task 1','1');
+    Tasks.displayTask('this is task 1','1');
+    writeTaskToProfile('this is task 2','3');
+    Tasks.displayTask('this is task 2','3');
+})
 
+const testButton2 = document.querySelector("#test-button2")
+testButton2.addEventListener('click', ()=> {
+    console.log(`active profile`)
+    console.log(activeProfile);
+
+    updateSessionsCurrent();
+});

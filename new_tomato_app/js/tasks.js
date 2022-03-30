@@ -4,8 +4,8 @@
 // [X] todo: task allignment
 // [] todo: use chrome storage to store tasks
 // [X] todo: break into separate file?
-// [] todo: create profiles with objects that track user name and tasks 
-// [] todo: create functionality to set a current task that is displayed below timer
+// [X] todo: create profiles with objects that track user name and tasks 
+// [X] todo: create functionality to set a current task that is displayed below timer
 // [] todo: add length display for each task that updates when a focus session has ended
 
 import * as MyTimer from './timer.js';    //timer associated code
@@ -16,23 +16,24 @@ import * as Data from './data.js';
 const form = document.querySelector("#task-form");        // new task submit form
 export const taskInput = document.querySelector("#new-task-input");     // new task submit input box
 export const taskLength = document.querySelector("#new-task-length");   // new task submit length box
-const taskList = document.querySelector("#tasks");               // div holding current tasks
+export const taskList = document.querySelector("#tasks");               // div holding current tasks
 export const tasksHeader = document.querySelector("#tasks-header");
 
 // creates new task when add task button is clicked in new task form
 // creates all html elements with user provided content and appends to taskList
 // creates event listeners for edit and delte buttons for the new task
-function displayTask(e) {
+export function displayTask(taskInputContent,taskLengthContent) {
     // prevents Add Task button from refreshing the page
 
     //placeholder to allow  changing later
     let taskProgress = 0;
 
-    // capture user input for new task and task length
-    let taskInputContent = taskInput.value;
-    const taskLengthContent = taskLength.value;
+    // // capture user input for new task and task length
+    // let taskInputContent = taskInput.value;
+    // const taskLengthContent = taskLength.value;
   
     // form validation to ensure a task and length are entered before submitting
+    // [] todo: implement validation to prevent length being higher than 9
     if ( (!taskInputContent) || (!taskLengthContent) ) {
       alert("Please add a task and length before attempting to submit");
 
@@ -90,12 +91,14 @@ function displayTask(e) {
         taskElementEdit.innerText = "Save";
         taskElementEdit.style = ("padding: 1px");
       }
+      // [] todo: implement if task is active update activeTask correctly
       else {
         taskElementInput.setAttribute("readonly", "readonly");
         taskElementEdit.innerText = "Edit";
         taskElementEdit.style = ("");
         taskInputContent = taskElementInput.value
         taskElementInput.value = (`${taskProgress}/${taskLengthContent} | ${taskInputContent}`);
+
       }
     })
   
@@ -107,6 +110,10 @@ function displayTask(e) {
 
     // clicking task box makes this task active
     taskElementInput.addEventListener('click', ()=> {
+      if (MyTimer.activeTask.classList.contains("strikethrough")) {
+          MyTimer.activeTask.classList.remove("strikethrough");
+      }
+
      MyTimer.activeTask.innerText = `${taskProgress}/${taskLengthContent} | ${taskInputContent}`;
     })
 }
@@ -117,8 +124,12 @@ form.addEventListener('submit', (e)=> {
   e.preventDefault();
 
   if(Data.activeProfile) {
-    displayTask();
-    Data.writeTaskToProfile();
+    displayTask(taskInput.value,taskLength.value);
+    Data.writeTaskToProfile(taskInput.value,taskLength.value);
+
+    // reset form input boxes to placeholder text
+    taskInput.value = "";
+    taskLength.value = "";
   }
   else {
     alert("Please create a profile before attempting to submit a task.")

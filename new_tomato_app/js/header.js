@@ -47,5 +47,13 @@ settingsSubmit.addEventListener('click', ()=> {
 
 })
 
+// add new profile to profilesArray
+newProfileSubmit.addEventListener('click', ()=> {
+    const fName = Header.newProfileFirstName.value;
+    const lName = Header.newProfileLastName.value;
+    const uName = Header.newProfileUsername.value;
+    Data.newProfileSubmit(fName,lName,uName)
+});
+
 export const dropdownContent = document.querySelector("#dropdown-content");
 

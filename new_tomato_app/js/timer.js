@@ -114,6 +114,11 @@ timer.addEventListener('targetAchieved', () => {
     // play end timer sound
     woodSound.play();
 
+    // call funciton to update sessions completed on task if there is an active task
+    if(!(activeTask.innerText === 'Active task shown here')) {
+        Data.updateSessionsCurrent();
+    }
+
     // check which type of session completed
     // if pomodoro session completed switch to appropriate break lengh
     if (Theme.siteBody.classList.contains(`${Theme.pomTheme}`)) 
