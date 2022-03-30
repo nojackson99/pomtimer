@@ -7,6 +7,7 @@
 
 import Timer from "easytimer.js";   // import timer managment objects and functions from easytimer.js library
 import * as Theme from './theme.js';
+import * as Data from './data.js';
 
 export const timerDisplay = document.getElementById("timer-display");       // timer display
 export const timerContainer = document.getElementById("timer-container");   // timer container

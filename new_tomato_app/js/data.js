@@ -77,6 +77,7 @@ export function newProfileSubmit(fName,lName,uName) {
     
     // set profile to active
     setActiveProfile(uName);
+    clearTaskDisplay();
     
     // add new profile html element to profile menu
     let profileMenuElement = document.createElement("p");
@@ -86,6 +87,8 @@ export function newProfileSubmit(fName,lName,uName) {
     // set event listener to update activeProfile when profile is clicked in menu
     profileMenuElement.addEventListener('click', (e)=> {
         setActiveProfile(e.currentTarget.innerText)
+        clearTaskDisplay();
+        writeNewTaskDisplay();
     })
 }
 
@@ -114,7 +117,6 @@ export function deleteTask(taskInputContent) {
     }
 }
 
-// ! bug when adding two tasks then trying to correctly identify last task as active using updateSessionsCurrent null is returned
 // updates profilesArray.tasksArray correctly when a session ends
 export function updateSessionsCurrent() {
 
@@ -128,10 +130,13 @@ export function updateSessionsCurrent() {
     const taskTemp = MyTimer.activeTask.innerText.slice(6);
 
     // search active profile object for active  task
+    console.log(activeProfile)
+    console.log(`activeProfile.taskArray.length: ${activeProfile.tasksArray.length}`)
     for (let i = 0; i < activeProfile.tasksArray.length; i++) {
         // once found set to taskkTempObject
         if (activeProfile.tasksArray[i].description === taskTemp) {
             taskTempObject = activeProfile.tasksArray[i]
+
 
             // increment sessions spent working on task
             taskTempObject.sessionsCurrent++;
@@ -141,13 +146,20 @@ export function updateSessionsCurrent() {
                 taskTempObject.taskComplete = true;
             }
 
+
             taskListChildNum = i;
+
             break;
         }
     }
 
+
+
     const taskListChildren = Tasks.taskList.children;                           // child nodes of taskList element
     const activeTaskChild =  taskListChildren.item(taskListChildNum);           // dom node of active task
+
+    console.log(activeTaskChild);
+
     const tempTaskInput = activeTaskChild.firstElementChild.firstElementChild   // display content of active task dom node
 
     // if on session end task is complete
@@ -165,20 +177,47 @@ export function updateSessionsCurrent() {
     }
 }
 
+function writeNewTaskDisplay() {
+    for (let i = 0; i < activeProfile.tasksArray.length; i++) {
+        Tasks.displayTask(activeProfile.tasksArray[i].description,activeProfile.tasksArray[i].sessionsTotal);
+    }
+
+}
+
+function clearTaskDisplay() {
+    const childrenCount = Tasks.taskList.children.length;
+    console.log(childrenCount)
+
+    for (let i = 0; i < childrenCount; i++) {
+        const child = Tasks.taskList.firstElementChild;
+        Tasks.taskList.removeChild(child);
+    }
+}
+
 
 // ! Profile and task debug code remove when finished debugging tag: D1
 const testButton =  document.querySelector("#test-button")
 testButton.addEventListener('click', ()=> {
     newProfileSubmit('Noah','Jackson','nojackson99')
+    writeTaskToProfile('task 1 noah','1');
+    Tasks.displayTask('task 1 noah','1');
+    writeTaskToProfile('task 2 noah ','3');
+    Tasks.displayTask('task 2 noah','3');
+
     newProfileSubmit('Alyssa','Kelley','akelley883')
 
     writeTaskToProfile('this is task 1','1');
     Tasks.displayTask('this is task 1','1');
     writeTaskToProfile('this is task 2','3');
     Tasks.displayTask('this is task 2','3');
+    // writeTaskToProfile('this is task 3','6');
+    // Tasks.displayTask('this is task 3','6');
+    // writeTaskToProfile('this is task 4','2');
+    // Tasks.displayTask('this is task 4','2');
 })
 
 const testButton2 = document.querySelector("#test-button2")
 testButton2.addEventListener('click', ()=> {
-    updateSessionsCurrent();
+    // updateSessionsCurrent();
+    clearTaskDisplay();
 });

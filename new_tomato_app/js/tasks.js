@@ -96,7 +96,24 @@ export function displayTask(taskInputContent,taskLengthContent) {
         taskElementInput.setAttribute("readonly", "readonly");
         taskElementEdit.innerText = "Edit";
         taskElementEdit.style = ("");
-        taskInputContent = taskElementInput.value
+
+        let tempTaskObject;
+
+        for (let i = 0; i < Data.activeProfile.tasksArray.length; i++) {
+          if (taskInputContent === Data.activeProfile.tasksArray[i].description) {
+            console.log(Data.activeProfile.tasksArray[i].description)
+            tempTaskObject = Data.activeProfile.tasksArray[i]
+          }
+        }
+
+        if (!(MyTimer.activeTask.innerText === "Active task shown here")) {
+          let newActiveTask = MyTimer.activeTask.innerText.slice(0,6);
+          MyTimer.activeTask.innerText = `${newActiveTask}${taskElementInput.value}`;
+          console.log(`${newActiveTask}${taskElementInput.value}`)
+        }       
+
+        taskInputContent = taskElementInput.value;
+        tempTaskObject.description = taskElementInput.value;
         taskElementInput.value = (`${taskProgress}/${taskLengthContent} | ${taskInputContent}`);
 
       }
@@ -125,7 +142,11 @@ form.addEventListener('submit', (e)=> {
 
   if(Data.activeProfile) {
     displayTask(taskInput.value,taskLength.value);
-    Data.writeTaskToProfile(taskInput.value,taskLength.value);
+
+    if ((taskLength.value) && (taskInput.value)) {
+      Data.writeTaskToProfile(taskInput.value,taskLength.value);
+    }
+    
 
     // reset form input boxes to placeholder text
     taskInput.value = "";
