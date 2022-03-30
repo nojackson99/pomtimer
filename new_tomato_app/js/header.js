@@ -8,7 +8,6 @@ export const newProfileFirstName = document.querySelector("#new-profile-first-na
 export const newProfileLastName = document.querySelector("#new-profile-last-name");
 export const newProfileUsername = document.querySelector("#new-profile-username");
 export const newProfileSubmit = document.querySelector("#new-profile-submit");
-
 const settingsButton = document.querySelector("#settings-button")
 const settingsModal = document.querySelector("#settings-modal")
 const closeSettingsModal = document.querySelector("#close-settings-modal") 
