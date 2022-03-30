@@ -16,7 +16,7 @@ const form = document.querySelector("#task-form");        // new task submit for
 const taskInput = document.querySelector("#new-task-input");     // new task submit input box
 const taskLength = document.querySelector("#new-task-length");   // new task submit length box
 const taskList = document.querySelector("#tasks");               // div holding current tasks
-
+export const tasksHeader = document.querySelector("#tasks-header");
 
 // creates new task when add task button is clicked in new task form
 // creates all html elements with user provided content and appends to taskList

@@ -449,7 +449,6 @@ styling for task module
 .tasks-header {
 	display: flex;
 	justify-content: center;
-	padding-right: 460px;
 }
 
 .strikethrough{

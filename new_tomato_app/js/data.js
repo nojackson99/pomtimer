@@ -1,40 +1,28 @@
 import * as Header from './header.js';
+import * as Tasks from './tasks.js';
 
 const profilesArray = [];
 
 //holds next profile ID
 let nextProfileID = 0;
+let activeProfile = null;
 
+// const task = {
+//     description: "",
+//     sessionsCurrent: 0,
+//     sessionsTotal: 0,
+//     taskComplete: false,
 
-// const profile = {
-//     id: 0,
-//     firstName: "",
-//     lastName: "",
-//     username: "",
-//     tasksArray: []
-
-//     //support methods
+//     support methods
 // }
 
-const task = {
-    description: "",
-    sessionsCurrent: 0,
-    sessionsTotal: 0,
-    taskComplete: false,
-
-    //support methods
-}
-
-//const profilesArray = [];
-
-console.log(Header.dropdownContent);
-
-
+// add new profile to profilesArray
 Header.newProfileSubmit.addEventListener('click', (e)=> {
     e.preventDefault();
 
     Header.profileModal.close();
 
+    // get nextProfileID to set as ID for new profile object
     const myid = nextProfileID;
     nextProfileID++;
 
@@ -54,16 +42,27 @@ Header.newProfileSubmit.addEventListener('click', (e)=> {
         }
     )
 
+    // set profile to active
+    setActiveProfile(uName);
+
+    // add new profile to profile menu
     let profileMenuElement = document.createElement("p");
     profileMenuElement.innerText = `${uName}`;
-
-    console.log(profileMenuElement);
-
     Header.dropdownContent.appendChild(profileMenuElement);
 
-
-    console.log(profilesArray);
+    profileMenuElement.addEventListener('click', (e)=> {
+        setActiveProfile(e.currentTarget.innerText)
+    })
+        
 })
+
+function setActiveProfile(uName) {
+    activeProfile = uName;
+
+    Tasks.tasksHeader.innerText = `Tasks: ${uName}`    
+}
+
+
 
 // console.log(profilesArray);
 
