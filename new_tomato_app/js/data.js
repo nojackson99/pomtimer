@@ -18,7 +18,6 @@ let activeProfile = null;
 
 // add new profile to profilesArray
 Header.newProfileSubmit.addEventListener('click', (e)=> {
-    e.preventDefault();
 
     Header.profileModal.close();
 

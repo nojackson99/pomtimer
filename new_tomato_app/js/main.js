@@ -1,9 +1,9 @@
 // [X] todo: break away as much code from main into modules
 
 // HTML todo's
-// [] todo: show active task below start focus button
-// [] todo: settings button that opens modal (maybe in top right?)
-// [] todo: profie button that allows for switching to new profile or creating a new one (maybe top left)
+// [X] todo: show active task below start focus button
+// [X] todo: settings button that opens modal (maybe in top right?)
+// [X] todo: profie button that allows for switching to new profile or creating a new one (maybe top left)
 // [] todo: checkbox next to each task that when clicked strikesthrough task
 // [] todo:
 // [] todo:

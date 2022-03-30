@@ -85,7 +85,7 @@ pauseButton.addEventListener('click', function () {
     // change play/pause button to resume state
     startButton.classList.remove('hide');
     pauseButton.classList.add('hide');
-    startButton.innerHTML = "Resume";
+    startButton.innerText = "Resume";
 })
 
 // Updates timer display every second

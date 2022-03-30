@@ -17,9 +17,9 @@ export const longTheme = 'long-break-blue';
 
 // [] todo: allow timer lengths to be changed by user
 // control pom and break lengths
-export const workLength = 25;
-export const shortBreak = 5;
-export const longBreak = 20;
+export let workLength = 25;
+export let shortBreak = 5;
+export let longBreak = 20;
 
 // set default timer length to current workLength
 export let desiredMinutes = workLength;
@@ -27,14 +27,14 @@ export let desiredMinutes = workLength;
 
 export function changeTheme(timerLength,classTheme) {
     desiredMinutes = timerLength;                             // change timer length
-    MyTimer.timerDisplay.innerHTML = `${timerLength}:00`;     // change timer display
+    MyTimer.timerDisplay.innerText = `${timerLength}:00`;     // change timer display
   
   
     // change start timer button display
     if(classTheme === pomTheme) {
-      MyTimer.startButton.innerHTML = "Start Focus";
+      MyTimer.startButton.innerText = "Start Focus";
     } else {
-      MyTimer.startButton.innerHTML = "Start Break";
+      MyTimer.startButton.innerText = "Start Break";
     }
   
     // ensure large-text class is applied to timerContainer
@@ -43,6 +43,27 @@ export function changeTheme(timerLength,classTheme) {
   
     // change theme class to the correct one
     siteBody.className = `${classTheme}`;
+}
+
+// update workLength shortBreak and longBreak from settings submit
+// [] todo: refactor changing session lengths from settings
+export function updateSessionLengths(pom,short,long) {
+  workLength = pom;
+  shortBreak = short;
+  longBreak = long;
+
+  if (siteBody.classList.contains("pomodoro-red")) {
+    MyTimer.timerDisplay.innerText = `${workLength}:00`
+    desiredMinutes = workLength
+  } 
+  else if (siteBody.classList.contains("short-break-green")) {
+    MyTimer.timerDisplay.innerText = `${shortBreak}:00`
+    desiredMinutes = shortBreak;
+  }
+  else {
+    MyTimer.timerDisplay.innerText = `${longBreak}:00`
+    desiredMinutes = longBreak
+  }
 }
   
 // select all three timer control buttons and add event listener to each
