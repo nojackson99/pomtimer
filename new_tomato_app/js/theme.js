@@ -1,6 +1,7 @@
 //================================================----theme.js----=================================================
-// This segment of code handles changing the site theme and the timer length
-// applies correct site theme, timerlength and necessary changes
+// The code in this file handles changing the site theme and the timer length. Also holds varriables controlling
+// session lengths and timer length when timer.start() is called. Sets event listeners for theme change buttons 
+// above the timer
 //================================================-----------------================================================
 
 
@@ -32,29 +33,27 @@ export function changeTheme(timerLength,classTheme) {
     sessionLength = timerLength;                                  // change timer length when starting timer object
     MyTimer.timerDisplay.innerText = `${timerLength}:00`;         // change timer display
   
-
     // change start timer button display
     if(classTheme === pomTheme) {
       MyTimer.startButton.innerText = "Start Focus";  //button displays start focus when on pomodoro theme
     } else {
       MyTimer.startButton.innerText = "Start Break";  //button displays start break when on short or long break theme
     }
-  
-    // ensure large-text class is applied to timerContainer
-    // necessary because on timer end timer display text will be smaller to accomodate end timer message
-    MyTimer.timerContainer.classList.replace('small-text', 'large-text');
-  
-    // change theme class to the correct one
+
+    // change site body class to new theme
     siteBody.className = `${classTheme}`;
 }
 
 // update workLength shortBreak and longBreak from settings submit
 // [] todo: refactor changing session lengths from settings
 export function updateSessionLengths(pom,short,long) {
+
+  // update session length control varaibles from form submit
   workLength = pom;
   shortBreak = short;
   longBreak = long;
 
+  // update timer display depending on current theme
   if (siteBody.classList.contains("pomodoro-red")) {
     MyTimer.timerDisplay.innerText = `${workLength}:00`
     sessionLength = workLength
@@ -73,7 +72,8 @@ export function updateSessionLengths(pom,short,long) {
 document.querySelectorAll('.button-flex-child').forEach(item => {
     item.addEventListener('click', event => {
   
-      // call resetTimer( when a timer has been started since site load
+      // call resetTimer when a timer has been started since site load
+      // this ensures start button will not resume previously started timer object
       if (MyTimer.timerStarted) {
         MyTimer.resetTimer(); 
       }
