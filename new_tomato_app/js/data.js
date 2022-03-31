@@ -1,6 +1,7 @@
 import * as Header from './header.js';
 import * as Tasks from './tasks.js';
 import * as MyTimer from './timer.js';
+import * as Theme from './theme.js';
 
 // -------------- VARIABLES -------------------
 export const profilesArray = [];   // array to hold all profile objects
@@ -169,7 +170,9 @@ function clearTaskDisplay() {
     }
 }
 
+//-------------------DEBUG BUTTONS ------------------------------
 
+// loads profile and task dummy data for testing features
 const testButton =  document.querySelector("#test-button")
 testButton.addEventListener('click', ()=> {
     newProfileSubmit('Noah','Jackson','nojackson99')
@@ -188,8 +191,14 @@ testButton.addEventListener('click', ()=> {
     Tasks.displayTask('Task 3 Alyssa', '2')
 })
 
+
 const testButton2 = document.querySelector("#test-button2")
 testButton2.addEventListener('click', ()=> {
     // updateSessionsCurrent();
     clearTaskDisplay();
 });
+
+const testButton4 = document.querySelector("#test-button4")
+testButton4.addEventListener('click', ()=> {
+    console.log(profilesArray);
+})

@@ -86,7 +86,7 @@ function startTimer(lengthInMinutes) {
 }
 
 // pause timer and change play/pause button to resume state
-pauseButton.addEventListener('click', function () {
+pauseButton.addEventListener('click', ()=> {
     buttonClick.play();     // play button click feedback
     timer.pause();          // pause timer
 
@@ -97,7 +97,7 @@ pauseButton.addEventListener('click', function () {
 })
 
 // Updates timer display every second
-timer.addEventListener('secondsUpdated', function () {
+timer.addEventListener('secondsUpdated', ()=> {
 
     // get minutes and seconds of timer object
     const minutes = timer.getTimeValues().minutes.toString();
@@ -121,6 +121,12 @@ timer.addEventListener('secondsUpdated', function () {
 timer.addEventListener('targetAchieved', () => {
     // play end timer sound
     woodSound.play();
+
+    // increment workSession counter if pomodoro was active theme
+    if (Theme.siteBody.classList.contains("pomodoro-red")) {
+        workSessionNumber++;
+        console.log(workSessionNumber)
+    }
 
     // call funciton to update sessions completed on task if there is an active task
     if(!(activeTask.innerText === 'Active task shown here')) {
@@ -154,3 +160,44 @@ timer.addEventListener('targetAchieved', () => {
 
 // starts the timer
 startButton.addEventListener( 'click', () => {startTimer(Theme.sessionLength)} );
+
+
+//----------------DEBUG BUTTON--------------------------------
+
+const testButton3 = document.querySelector("#test-button3")
+testButton3.addEventListener('click', () => {
+    // increment workSession counter if pomodoro was active theme
+    if (Theme.siteBody.classList.contains("pomodoro-red")) {
+        workSessionNumber++;
+        console.log(workSessionNumber)
+    }
+
+    // call funciton to update sessions completed on task if there is an active task
+    if(!(activeTask.innerText === 'Active task shown here')) {
+        Data.updateSessionsCurrent();
+    }
+
+    // check which type of session completed
+    // if pomodoro session completed switch to appropriate break lengh
+    if (Theme.siteBody.classList.contains(`${Theme.pomTheme}`)) 
+    {
+        // if enough work session have completed switch to long break
+        if (workSessionNumber === longBreakInterval)  {
+            // reset workSession counter
+            workSessionNumber = 0;
+            // switch theme to long break
+            Theme.changeTheme(Theme.longBreak,Theme.longTheme);
+        // switch theme to short break
+        } else {
+            Theme.changeTheme(Theme.shortBreak,Theme.shortTheme);
+        }
+    // if break session completed switch theme to pomodoro
+    } else {
+        Theme.changeTheme(Theme.workLength,Theme.pomTheme);
+    }
+
+    // change play/pause button to play state
+    startButton.classList.remove('hide');
+    pauseButton.classList.add('hide');
+
+});
