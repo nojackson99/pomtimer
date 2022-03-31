@@ -1,14 +1,14 @@
-//================================================----header.js----================================================
+//----------------------------------------------------header.js----------------------------------------------------
 // The code in this file controls the profile and settings buttons at the top of the page.
 // Hoevering over profile menu opens the dropdown which allows for switching profiles and creating a new profile.
 // Clicking create new profile opens profile modal which contains a form to submit new profile data.
 // Clicking settings opens settings modal which contains a form to submit settings changes
-//================================================-----------------================================================
+//-----------------------------------------------------------------------------------------------------------------
 
 
 // -------------- IMPORTS ---------------------
-import * as Theme from './theme.js' // theme associated code
 import * as Data from './data.js'   // data associated code
+import * as Theme from './theme.js' // theme associated code
 
 
 // -------------- PROFILE ---------------------

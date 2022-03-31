@@ -1,27 +1,39 @@
-// -------------- timer.js --------------------
-// Holds code associated with controlling timer function
-// --------------------------------------------
+//----------------------------------------------------timer.js-------------------------------------------------------
+// Code in this file controls all functions realted to timer object. Contains funcitons to start, pause,
+// and reset timer. Contains funcitons to update timer display each second and control behavior when timer completes.
+//-------------------------------------------------------------------------------------------------------------------
 // [X] todo: create timer reset funciton to stop and reset timer when theme is changed
 // [X] todo: create functionality for timer completion
 // [] todo: add funtionality so session does not increment when user changes theme manually
 
-import Timer from "easytimer.js";   // import timer managment objects and functions from easytimer.js library
-import * as Theme from './theme.js';
-import * as Data from './data.js';
+import Timer from "easytimer.js";       // import timer managment objects and functions from easytimer.js library
+import * as Data from './data.js';      // data associated code
+import * as Theme from './theme.js';    // theme associated code
 
-export const timerDisplay = document.getElementById("timer-display");       // timer display
+// -------------- DOM NODES -------------------
 export const timerContainer = document.getElementById("timer-container");   // timer container
+export const timerDisplay = document.getElementById("timer-display");       // timer display
 export const startButton = document.getElementById("timer-start")           // start timer button
-export let timerStarted = false;                                            // tracks if a timer has been started
 const pauseButton = document.getElementById("timer-pause");                 // pause state for play/pause button
+export const activeTask = document.querySelector("#active-task")            // active task display below play/pause button
+
+
+// -------------- SOUND VARIABLES -------------
+const alyssaSound = new Audio('../misc_project_files/sounds/alyssa_timer_end.mp3')
+const buttonClick = new Audio('../misc_project_files/sounds/button_click.mp3'); // sound from zapsplat.com
+const ringingBell = new Audio('../misc_project_files/sounds/ringing_bell.mp3')
+const woodSound = new Audio('../misc_project_files/sounds/wood_end_timer.mp3')
+
+// tracks if a timer has been started. This ensures timer restarts properly if theme is changed while running
+export let timerStarted = false;  
+
 let workSessionNumber = 0;                                                  // tracks work session current number
 let longBreakInterval = 3;                                                  // tracks when to trigger a long break
-export const activeTask = document.querySelector("#active-task")
 
 // create new easytimer.js timer object;
 export let timer = new Timer();
 
-// resets timer as needed
+// resets timer easyTimer.js timer object
 export function resetTimer() {
     // check if timer is currently running
     if(timer.isRunning()) {
@@ -35,12 +47,13 @@ export function resetTimer() {
     timerStarted = false;
 }
 
-// starts new timer at given length
+// starts/resumese timer object at passed in length
+// lengthInMintues parameter only used when timer hasn't been started yet
 function startTimer(lengthInMinutes) {
 
     // resume timer if paused
     if(timer.isPaused()) {
-        buttonClick.play();
+        buttonClick.play();     // button click feedback
         timer.start();
 
         // change play/pause button to pause state
@@ -50,10 +63,10 @@ function startTimer(lengthInMinutes) {
     }
     // runs on first call of startTimer 
     else {
-        // calculates correct timer length
+        // calculates correct timer length from minutes to seconds
         const lengthInSeconds = (lengthInMinutes * 60);
 
-        buttonClick.play();
+        buttonClick.play(); // button click feedback
 
         // change play/pause button to pause state
         startButton.classList.add('hide');    
@@ -67,16 +80,9 @@ function startTimer(lengthInMinutes) {
         //increment workSession number if pomodoro theme is active on timer start
         if (Theme.siteBody.classList.contains(`${Theme.pomTheme}`)) {
             workSessionNumber++;        // increment session number
-            console.log(`Session number: ${workSessionNumber}`);   
         }
     }
 }
-
-// -------------- SOUND VARIABLES -------------
-const alyssaSound = new Audio('../misc_project_files/sounds/alyssa_timer_end.mp3')
-const buttonClick = new Audio('../misc_project_files/sounds/button_click.mp3'); // sound from zapsplat.com
-const ringingBell = new Audio('../misc_project_files/sounds/ringing_bell.mp3')
-const woodSound = new Audio('../misc_project_files/sounds/wood_end_timer.mp3')
 
 // pause timer and change play/pause button to resume state
 pauseButton.addEventListener('click', function () {
@@ -92,7 +98,7 @@ pauseButton.addEventListener('click', function () {
 // Updates timer display every second
 timer.addEventListener('secondsUpdated', function () {
 
-    // get minutes and seconds for timer object
+    // get minutes and seconds of timer object
     const minutes = timer.getTimeValues().minutes.toString();
     const seconds = timer.getTimeValues().seconds.toString();
 
