@@ -7,39 +7,47 @@
   <!-- href is the icon shown on chrome tab -->
   <link rel="icon" type="image/svg+xml" href="./misc_project_files/images/PomTimer-logo-small.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Focus Better</title>
+  <title>PomTimer</title>
+</head>
+
+<!-- all content below divider -->
+<body id="site-body" class="pomodoro-red">
 
   <!-- content shown above divider -->
   <div class="head-content-flex">
+    
+    <!-- divides content above divider into 3 container for flexbox -->
     <div class="box">
 
+      <!-- profile button and dropdown container -->
       <div class="dropdown" >
-      
-        <button class="header-button" style="justify-content: left;">Profile</button>
-        
+        <button class="header-button" style="justify-content: left;">Profile</button>     
         <div class="dropdown-content" id="dropdown-content">
           <p id="create-new-profile">Create New Profile</p>
         </div>
       </div>
 
     </div>
-    
-    
+     
+    <!-- PomTimer site title -->
     <div class="box">
       <p>PomTimer</p>
     </div>
 
+    <!-- settings button -->
     <div class="box">
       <button class="header-button" id="settings-button">Settings</button>
     </div>
     
-
+    <!-- content in create new profile modal -->
     <dialog class="modal" id="new-profile-modal">
       <div style ="display: inline;">
         <p class = "modal-title">Create New Profile</p>
         <p class="close" id="close-profile-modal"></p>
       </div>
         <hr/>
+
+        <!-- new profile submission form  -->
         <form class="modal-form" autocomplete="off" method="dialog">
           <label for="first-name">First Name</label>
           <input type="text"  name="first-name" id="new-profile-first-name" autocomplete="no">
@@ -52,10 +60,13 @@
         <hr/>
     </dialog>
   
+    <!-- content in settings modal -->
     <dialog class="modal" id="settings-modal">
         <h1 class="modal-title">Session Lengths</h1>
         <p class="close" id="close-settings-modal"></p>
         <hr/>
+
+        <!-- session interval submisison form -->
         <form class="modal-form" autocomplete="off" method="dialog">
           <label for="pomodoro-length">Pomodoro</label>
           <input type="number"  name="pomodoro-length" id="pomodoro-length" value="">
@@ -69,23 +80,10 @@
     </dialog>
   </div>
 
-  <!-- <form id="task-form" class="new-task-form" autocomplete="off">
-    <input type="text" id="new-task-input" placeholder="What is your focus?" class="item new-task-input task-theme">
-    <input type="number" id="new-task-length" placeholder="Length?" class="item new-task-length task-theme">
-    <input type="submit" id="new-task-submit" value="Add task" class="animated-button smaller item new-task-submit"> 
-  </form> -->
-
-  
-
   <!-- divider -->
   <div>
     <div class="divider div-transparent div-dot"></div>
   </div>
-  
-</head>
-
-<!-- all content below divider -->
-<body id="site-body" class="pomodoro-red">
 
   <div id="app">
 
@@ -110,6 +108,7 @@
         <button id="timer-pause" class="animated-button hide">Pause</button>
       </div>
 
+      <!-- active task display below start/pause button -->
       <div>
         <p id = "active-task" class="active-task"> Active task shown here </p>
       </div>
@@ -136,18 +135,6 @@
         <!-- all tasks here -->
         <div id="tasks">
 
-          <!-- sample task -->
-          <!-- <div class="task">
-            <div class="content">
-              <input type="text" class="text task-input" value="My task" readonly/>
-              <span/>
-            </div>
-            <div class="actions">
-              <button class="edit rounded-button">Edit</button>
-              <button class="delete rounded-button">Delete</button>
-            </div>
-          </div> -->
-
         </div>
       </section>
 
@@ -167,6 +154,7 @@
   </script>
 </body>
 
+<!-- debug buttons -->
 <button id="test-button">load test data</button>
 <button id="test-button2">switchProfile()</button>
 

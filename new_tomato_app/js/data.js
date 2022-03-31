@@ -26,7 +26,7 @@ export function newProfileSubmit(fName,lName,uName) {
             username: uName,    // username of user
             tasksArray: []      // hold array of tasks for current user
         }
-    )
+    );
     
     // set profile to active
     setActiveProfile(uName);
@@ -74,8 +74,7 @@ function setActiveProfile(uName) {
     }
 
     //update active profile display
-    Tasks.tasksHeader.innerText = `Tasks: ${uName}`
-    
+    Tasks.tasksHeader.innerText = `Tasks: ${uName}`;
 }
 
 //deletes task from tasksArray when delete button is clicked by user
@@ -89,7 +88,7 @@ export function deleteTask(taskInputContent) {
         }
 
         // chages active task display to default text
-        MyTimer.activeTask.innerText = "Active task shown here"
+        MyTimer.activeTask.innerText = "Active task shown here";
     }
 
     // [] todo: replace this for loop with .find method
@@ -116,7 +115,7 @@ export function updateSessionsCurrent() {
     for (let i = 0; i < activeProfile.tasksArray.length; i++) {
         // once found set to taskTempObject
         if (activeProfile.tasksArray[i].description === taskTemp) {
-            taskTempObject = activeProfile.tasksArray[i]
+            taskTempObject = activeProfile.tasksArray[i];
 
             // increment sessions spent working on task
             taskTempObject.sessionsCurrent++;
@@ -145,8 +144,8 @@ export function updateSessionsCurrent() {
     }
     // if task is not complete update number without strikethrough
     else {
-        MyTimer.activeTask.innerText = `${taskTempObject.sessionsCurrent}/${taskTempObject.sessionsTotal} | ${taskTemp}`
-        tempTaskInput.value = `${taskTempObject.sessionsCurrent}/${taskTempObject.sessionsTotal} | ${taskTemp}`
+        MyTimer.activeTask.innerText = `${taskTempObject.sessionsCurrent}/${taskTempObject.sessionsTotal} | ${taskTemp}`;
+        tempTaskInput.value = `${taskTempObject.sessionsCurrent}/${taskTempObject.sessionsTotal} | ${taskTemp}`;
     }
 }
 
