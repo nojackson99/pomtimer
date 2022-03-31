@@ -1,4 +1,3 @@
-
 //----------------------------------------------------main.js------------------------------------------------------
 // This file holds imports of all other js files and css styling file. Imported into html file index.html
 //-----------------------------------------------------------------------------------------------------------------
@@ -11,6 +10,7 @@
 // [] todo: implement CSS for settings and new profile modals
 
 // [] todo: add debug button to simulate timer end
+// [] todo: add debug button to display profilesArray
 
 
 // -------------- IMPORTS ---------------------

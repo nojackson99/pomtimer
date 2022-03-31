@@ -11,7 +11,6 @@
 import * as Data from './data.js';        //data asccoaited code
 import * as MyTimer from './timer.js';    //timer associated code
 
-
 // -------------- DOM NODES -------------------
 const form = document.querySelector("#task-form");                      // new task submit form
 export const taskInput = document.querySelector("#new-task-input");     // new task submit input box
