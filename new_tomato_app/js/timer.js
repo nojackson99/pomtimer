@@ -146,4 +146,4 @@ timer.addEventListener('targetAchieved', () => {
 });
 
 // starts the timer
-startButton.addEventListener( 'click', () => {startTimer(Theme.desiredMinutes)} );
+startButton.addEventListener( 'click', () => {startTimer(Theme.sessionLength)} );

@@ -6,10 +6,14 @@ import * as MyTimer from './timer.js';
 // array to hold all profile objects
 export const profilesArray = [];
 
+
+
 //holds next profile ID
 let nextProfileID = 0;             // tracks available id for profile instantiation
  
 export let activeProfile = null;   // holds the current activeProfile as an object
+
+
 
 // writes task submitted throuhg new task form to activeProfile.taskArray
 export function writeTaskToProfile(taskInput,taskLength) {    

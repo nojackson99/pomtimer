@@ -5,8 +5,10 @@
 // Clicking settings opens settings modal which contains a form to submit settings changes
 //================================================-----------------================================================
 
+
 // -------------- IMPORTS ---------------------
 import * as Theme from './theme.js' // theme associated code
+import * as Data from './data.js'   // data associated code
 
 
 // -------------- PROFILE ---------------------
@@ -63,7 +65,7 @@ settingsButton.addEventListener('click', ()=> {
     // populate form values with current session lengths
     pomodoroLength.value = Theme.workLength;
     shortBreak.value = Theme.shortBreak;
-    longBreak.value = Theme.longBreak;
+    longBreak.value =Theme.longBreak;
 
     settingsModal.showModal();
 })

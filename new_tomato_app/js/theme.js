@@ -1,40 +1,43 @@
-// -------------- theme.js --------------------
+//================================================----theme.js----=================================================
 // This segment of code handles changing the site theme and the timer length
 // applies correct site theme, timerlength and necessary changes
+//================================================-----------------================================================
 
 
 // -------------- IMPORTS ---------------------
+import * as Data from './data.js';        //data associated code
 import * as MyTimer from './timer.js';    //timer associated code
-import * as Tasks from './tasks.js';      //task associated code
 
-// -------------- VARIABLES -------------------
-export const siteBody = document.getElementById("site-body");   // app body
+// site body html element
+export const siteBody = document.getElementById("site-body");   
 
-// theme classes
+// theme classes used for holding the class name when changing themes
 export const pomTheme = 'pomodoro-red';
 export const shortTheme = 'short-break-green';
 export const longTheme = 'long-break-blue';
 
 // [X] todo: allow timer lengths to be changed by user
+// [] todo: refactor to move these variables and sessionLength to data.js
 // control pom and break lengths
 export let workLength = 25;
 export let shortBreak = 5;
 export let longBreak = 20;
 
 // set default timer length to current workLength
-export let desiredMinutes = workLength;
+export let sessionLength = workLength;
 
-
+// changes the site color theme and the starting time for the timer object
 export function changeTheme(timerLength,classTheme) {
-    desiredMinutes = timerLength;                             // change timer length
-    MyTimer.timerDisplay.innerText = `${timerLength}:00`;     // change timer display
+
+    sessionLength = timerLength;                                  // change timer length when starting timer object
+    MyTimer.timerDisplay.innerText = `${timerLength}:00`;         // change timer display
   
-  
+
     // change start timer button display
     if(classTheme === pomTheme) {
-      MyTimer.startButton.innerText = "Start Focus";
+      MyTimer.startButton.innerText = "Start Focus";  //button displays start focus when on pomodoro theme
     } else {
-      MyTimer.startButton.innerText = "Start Break";
+      MyTimer.startButton.innerText = "Start Break";  //button displays start break when on short or long break theme
     }
   
     // ensure large-text class is applied to timerContainer
@@ -54,15 +57,15 @@ export function updateSessionLengths(pom,short,long) {
 
   if (siteBody.classList.contains("pomodoro-red")) {
     MyTimer.timerDisplay.innerText = `${workLength}:00`
-    desiredMinutes = workLength
+    sessionLength = workLength
   } 
   else if (siteBody.classList.contains("short-break-green")) {
     MyTimer.timerDisplay.innerText = `${shortBreak}:00`
-    desiredMinutes = shortBreak;
+    sessionLength = shortBreak;
   }
   else {
     MyTimer.timerDisplay.innerText = `${longBreak}:00`
-    desiredMinutes = longBreak
+    sessionLength = longBreak
   }
 }
   
