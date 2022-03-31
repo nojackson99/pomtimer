@@ -62,7 +62,7 @@ export function writeTaskToProfile(taskInput,taskLength) {
 }
 
 // updates the active profile
-function setActiveProfile(uName) {
+export function setActiveProfile(uName) {
     
     // [] todo: replace for loop search with .find array method
     // searches profilesArray to find object that matches profile clicked in menu
@@ -151,7 +151,7 @@ export function updateSessionsCurrent() {
 }
 
 // iterates through taskArray of current active task and calls display task for each
-function writeNewTaskDisplay() {
+export function writeNewTaskDisplay() {
     // ? Use forEach instead ?
     for (let i = 0; i < activeProfile.tasksArray.length; i++) {
         Tasks.displayTask(activeProfile.tasksArray[i].description,activeProfile.tasksArray[i].sessionsTotal);
@@ -159,7 +159,7 @@ function writeNewTaskDisplay() {
 }
 
 // delete all dom node children of task list
-function clearTaskDisplay() {
+export function clearTaskDisplay() {
     // get count children count of task list
     const childrenCount = Tasks.taskList.children.length;
 
@@ -173,31 +173,41 @@ function clearTaskDisplay() {
 //-------------------DEBUG BUTTONS ------------------------------
 
 // loads profile and task dummy data for testing features
+let testButton1Clicked = false;
 const testButton =  document.querySelector("#test-button")
 testButton.addEventListener('click', ()=> {
-    newProfileSubmit('Noah','Jackson','nojackson99')
-    writeTaskToProfile('task 1 Noah','1');
-    Tasks.displayTask('task 1 Noah','1');
-    writeTaskToProfile('task 2 Noah ','3');
-    Tasks.displayTask('task 2 Noah','3');
+    if (!testButton1Clicked) {
+        newProfileSubmit('Noah','Jackson','nojackson99')
+        writeTaskToProfile('task 1 Noah','1');
+        Tasks.displayTask('task 1 Noah','1');
+        writeTaskToProfile('task 2 Noah ','3');
+        Tasks.displayTask('task 2 Noah','3');
 
-    newProfileSubmit('Alyssa','Kelley','akelley883')
+        newProfileSubmit('Alyssa','Kelley','akelley883')
 
-    writeTaskToProfile('Task 1 Alyssa','1');
-    Tasks.displayTask('Task 1 Alyssa','1');
-    writeTaskToProfile('Task 2 Alyssa','5');
-    Tasks.displayTask('Task 2 Alyssa','5');
-    writeTaskToProfile('Task 3 Alysa', '2');
-    Tasks.displayTask('Task 3 Alyssa', '2')
+        writeTaskToProfile('Task 1 Alyssa','1');
+        Tasks.displayTask('Task 1 Alyssa','1');
+        writeTaskToProfile('Task 2 Alyssa','5');
+        Tasks.displayTask('Task 2 Alyssa','5');
+        writeTaskToProfile('Task 3 Alyssa', '2');
+        Tasks.displayTask('Task 3 Alyssa', '2')
+        testButton1Clicked = true;
+    }
+    else {
+        alert(`test data already loaded`)
+    }
+    
 })
 
 
+// clear task display
 const testButton2 = document.querySelector("#test-button2")
 testButton2.addEventListener('click', ()=> {
     // updateSessionsCurrent();
     clearTaskDisplay();
 });
 
+// log profilesArray
 const testButton4 = document.querySelector("#test-button4")
 testButton4.addEventListener('click', ()=> {
     console.log(profilesArray);

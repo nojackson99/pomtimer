@@ -126,12 +126,13 @@ timer.addEventListener('targetAchieved', () => {
     if (Theme.siteBody.classList.contains("pomodoro-red")) {
         workSessionNumber++;
         console.log(workSessionNumber)
+
+        // call funciton to update sessions completed on task if there is an active task
+        if(!(activeTask.innerText === 'Active task shown here')) {
+            Data.updateSessionsCurrent();
+        }
     }
 
-    // call funciton to update sessions completed on task if there is an active task
-    if(!(activeTask.innerText === 'Active task shown here')) {
-        Data.updateSessionsCurrent();
-    }
 
     // check which type of session completed
     // if pomodoro session completed switch to appropriate break lengh
@@ -170,11 +171,11 @@ testButton3.addEventListener('click', () => {
     if (Theme.siteBody.classList.contains("pomodoro-red")) {
         workSessionNumber++;
         console.log(workSessionNumber)
-    }
 
-    // call funciton to update sessions completed on task if there is an active task
-    if(!(activeTask.innerText === 'Active task shown here')) {
+        // call funciton to update sessions completed on task if there is an active task
+        if(!(activeTask.innerText === 'Active task shown here')) {
         Data.updateSessionsCurrent();
+        }
     }
 
     // check which type of session completed

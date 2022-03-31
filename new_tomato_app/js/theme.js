@@ -20,8 +20,8 @@ export const longTheme = 'long-break-blue';
 // [X] todo: allow timer lengths to be changed by user
 // [] todo: refactor to move these variables and sessionLength to data.js
 // control pom and break lengths
-export let workLength = 25;
-export let shortBreak = 5;
+export let workLength = .1;
+export let shortBreak =.1;
 export let longBreak = 20;
 
 // set default timer length to current workLength
