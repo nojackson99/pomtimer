@@ -1,6 +1,7 @@
 //----------------------------------------------------timer.js-------------------------------------------------------
 // Code in this file controls all functions realted to timer object. Contains funcitons to start, pause,
 // and reset timer. Contains funcitons to update timer display each second and control behavior when timer completes.
+// LIBRARY IMPORT: easyTimer.js DOCS: https://albert-gonzalez.github.io/easytimer.js/
 //-------------------------------------------------------------------------------------------------------------------
 // [X] todo: create timer reset funciton to stop and reset timer when theme is changed
 // [X] todo: create functionality for timer completion
