@@ -3,14 +3,11 @@
 //-----------------------------------------------------------------------------------------------------------------
 
 
-// HTML & CSS todo's
+// ------------HTML & CSS todo's---------------
 // [X] todo: show active task below start focus button
 // [X] todo: settings button that opens modal (maybe in top right?)
 // [X] todo: profie button that allows for switching to new profile or creating a new one (maybe top left)
 // [] todo: implement CSS for settings and new profile modals
-
-// [] todo: add debug button to simulate timer end
-// [] todo: add debug button to display profilesArray
 
 
 // -------------- IMPORTS ---------------------

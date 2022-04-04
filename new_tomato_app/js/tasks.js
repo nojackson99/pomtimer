@@ -1,6 +1,6 @@
-// -------------- tasks.js --------------------
-// Holds code associated with creating, editing, and deleting tasks
-// --------------------------------------------
+// ----------------------------------- tasks.js -----------------------------------------
+// Holds code associated with creating asn editing tasks and displaying them on the page
+// --------------------------------------------------------------------------------------
 // [X] todo: task allignment
 // [] todo: use chrome storage to store tasks
 // [X] todo: break into separate file?
@@ -121,7 +121,7 @@ export function displayTask(taskInputContent,taskLengthContent) {
     })
   
     // create event listener for newly created delete button
-    taskElementDelete.addEventListener('click', ()=> {
+    taskElementDelete.addEventListener('click', () => {
       // deletes current task form profilesArray object
       Data.deleteTask(taskInputContent);
       // deletes task display and associated dom nodes

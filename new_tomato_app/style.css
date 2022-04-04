@@ -91,7 +91,6 @@ HEAD CLASSES
 dialog {
 	border:none;
 	border-radius: 10px;
-	background-color:;
 }
 
 dialog::backdrop {
@@ -458,3 +457,7 @@ styling for task module
 span {
 	padding: 10px;
 }
+
+/* body {
+	background-color: black;
+} */

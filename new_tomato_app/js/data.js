@@ -1,7 +1,11 @@
+//----------------------------------------------------data.js------------------------------------------------------
+// The code in this file controls most data operations for the app. Contains functions to create new profiles
+// and tasks. Also has functions to delete tasks and update active profile.
+//-----------------------------------------------------------------------------------------------------------------
+
 import * as Header from './header.js';
 import * as Tasks from './tasks.js';
 import * as MyTimer from './timer.js';
-import * as Theme from './theme.js';
 
 // -------------- VARIABLES -------------------
 export const profilesArray = [];   // array to hold all profile objects
@@ -40,7 +44,7 @@ export function newProfileSubmit(fName,lName,uName) {
     Header.dropdownContent.appendChild(profileMenuElement);
     
     // set event listener to update activeProfile when profile is clicked in menu
-    profileMenuElement.addEventListener('click', (e)=> {
+    profileMenuElement.addEventListener('click', (e) => {
         setActiveProfile(e.currentTarget.innerText)
         //clear task display then update with new user's tasks
         clearTaskDisplay();
@@ -175,7 +179,7 @@ export function clearTaskDisplay() {
 // loads profile and task dummy data for testing features
 let testButton1Clicked = false;
 const testButton =  document.querySelector("#test-button")
-testButton.addEventListener('click', ()=> {
+testButton.addEventListener('click', () => {
     if (!testButton1Clicked) {
         newProfileSubmit('Noah','Jackson','nojackson99')
         writeTaskToProfile('task 1 Noah','1');
@@ -202,13 +206,13 @@ testButton.addEventListener('click', ()=> {
 
 // clear task display
 const testButton2 = document.querySelector("#test-button2")
-testButton2.addEventListener('click', ()=> {
+testButton2.addEventListener('click', () => {
     // updateSessionsCurrent();
     clearTaskDisplay();
 });
 
 // log profilesArray
 const testButton4 = document.querySelector("#test-button4")
-testButton4.addEventListener('click', ()=> {
+testButton4.addEventListener('click', () => {
     console.log(profilesArray);
 })
