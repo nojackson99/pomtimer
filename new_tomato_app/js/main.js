@@ -11,8 +11,6 @@
 
 
 // -------------- IMPORTS ---------------------
-import '../style.css';
-
 import * as Data from './data.js';        //data associated code
 import * as Header from './header.js';    //header associated code
 import * as Tasks from './tasks.js';      //task associated code

@@ -7,9 +7,11 @@
 // [X] todo: create functionality for timer completion
 // [] todo: add funtionality so session does not increment when user changes theme manually
 
-import Timer from "easytimer.js";       // import timer managment objects and functions from easytimer.js library
+//simport Timer from "easytimer.js";       // import timer managment objects and functions from easytimer.js library
+//import Timer from "../node_modules/easytimer.js/index.d.ts"
 import * as Data from './data.js';      // data associated code
 import * as Theme from './theme.js';    // theme associated code
+
 
 // -------------- DOM NODES -------------------
 export const timerContainer = document.getElementById("timer-container");   // timer container
@@ -32,7 +34,7 @@ let workSessionNumber = 0;                                                  // t
 let longBreakInterval = 3;                                                  // tracks when to trigger a long break
 
 // create new easytimer.js timer object;
-export let timer = new Timer();
+export let timer = new easytimer.Timer();
 
 // resets timer easyTimer.js timer object
 export function resetTimer() {
