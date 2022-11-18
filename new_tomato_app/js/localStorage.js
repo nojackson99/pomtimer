@@ -21,8 +21,13 @@ export class LocalStorage {
         longBreak: 20,
       };
     }
-    console.log('in loadSessionLengths()');
-    console.log(sessionLengths);
     return sessionLengths;
   }
+
+  saveProfileData(profileData) {
+    const jsonData = JSON.stringify(profileData);
+    localStorage.setItem('profileData', jsonData);
+  }
+
+  loadProfileData() {}
 }

@@ -6,29 +6,35 @@
 import * as Header from './header.js';
 import * as Tasks from './tasks.js';
 import * as MyTimer from './timer.js';
+import { LocalStorage } from './localStorage.js';
 
 // -------------- VARIABLES -------------------
 export const profilesArray = []; // array to hold all profile objects
 let nextProfileID = 0; // tracks available id for profile instantiation
 export let activeProfile = null; // holds the current activeProfile as an object
 
+const localStorageRef = new LocalStorage();
+
 export function newProfileSubmit(fName, lName, uName) {
   // close profile modal on successful submission of form
   Header.profileModal.close();
 
   // get and increment nextProfileID to set as ID for new profile object
-  const myid = nextProfileID;
+  const myID = nextProfileID;
   nextProfileID++;
 
   // push a new profile object to profilesArray
   profilesArray.push({
-    id: myid, // id of profile object
-    nextTaskID: 0, // holds next avilable task id for task instantiaton
+    id: myID, // id of profile object
+    nextTaskID: 0, // holds next available task id for task instantiation
     firstName: fName, // first name of user
     lastName: lName, // last name of user
     username: uName, // username of user
     tasksArray: [], // hold array of tasks for current user
   });
+
+  // save profile data to local storage
+  localStorageRef.saveProfileData(profilesArray);
 
   // set profile to active
   setActiveProfile(uName);
@@ -59,6 +65,9 @@ export function writeTaskToProfile(taskInput, taskLength) {
     sessionsTotal: taskLength, // tracks total pomodoro session goal for task
     taskComplete: false, // tracks if task is considered complete by user
   });
+
+  // save profile data to local storage
+  localStorageRef.saveProfileData(profilesArray);
 }
 
 // updates the active profile
@@ -93,12 +102,15 @@ export function deleteTask(taskInputContent) {
   // [] todo: replace this for loop with .find method
   // iterate through tasksArray of active profile
   for (let i = 0; i < activeProfile.tasksArray.length; i++) {
-    // if task in tasksArray matches task being delted
+    // if task in tasksArray matches task being deleted
     if (taskInputContent === activeProfile.tasksArray[i].description) {
       // remove this task from tasksArray
       activeProfile.tasksArray.splice(i, 1);
     }
   }
+
+  // save profile data to local storage
+  localStorageRef.saveProfileData(profilesArray);
 }
 
 // updates profilesArray.tasksArray correctly when a session ends

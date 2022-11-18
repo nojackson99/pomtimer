@@ -47,7 +47,7 @@ newProfileSubmit.addEventListener('click', () => {
   const lName = newProfileLastName.value;
   const uName = newProfileUsername.value;
 
-  // call funciton to create new profile
+  // call function to create new profile
   Data.newProfileSubmit(fName, lName, uName);
 });
 
