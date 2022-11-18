@@ -27,7 +27,7 @@ const loadWithFetch = async () => {
     // try catch block ensures fetch request is successful and console logs error on failure
     try {
         //urls for profile data from dummy json server
-        const profileUrl1 = "https://jsonplaceholder.typicode.com/users/1";     
+        const profileUrl1 = "https://jsonplaceholder.typicode.com/users/1";
         const profileUrl2 = "https://jsonplaceholder.typicode.com/users/2";
 
         //urls for  todo data form dummy json server
@@ -49,7 +49,7 @@ const loadWithFetch = async () => {
 
         // iterate through profileResults to ensure all fetch calls returned ok
         for (let i = 0; i < profileResults.length; i++) {
-            if(profileResults[i].ok === false) {
+            if (profileResults[i].ok === false) {
                 // custom exception thrown when ok returns false
                 throw 'profileResults not ok'
             }
@@ -58,10 +58,10 @@ const loadWithFetch = async () => {
 
         // iterate through todoResults to ensure all fetch calls returned ok
         for (let i = 0; i < todoResults.length; i++) {
-            if(todoResults[i].ok === false)
-            // custom exeception thrown when ok returns false
-            throw 'profileResults not ok'
-            
+            if (todoResults[i].ok === false)
+                // custom exeception thrown when ok returns false
+                throw 'profileResults not ok'
+
         }
         console.log(`todoResults ok`)
 
@@ -69,7 +69,7 @@ const loadWithFetch = async () => {
         const profilePromises = profileResults.map(result => result.json())
         // profileFinalData awaits the resolve return from each promise
         const profileFinalData = await Promise.all(profilePromises)
-        
+
         // calls .json() on each element of todoPromises
         const todoPromises = todoResults.map(result => result.json())
         // todoFinalData awaits the resolve return from each promise
@@ -77,23 +77,23 @@ const loadWithFetch = async () => {
 
         // iterate through profileFinalData getting name and username properties
         for (let i = 0; i < profileFinalData.length; i++) {
-            
+
             // name is split into namesArray which will be first name and last name
             const namesArray = profileFinalData[i].name.split(" ");
             const username = profileFinalData[i].username;
 
             // newProfileSubmit called with data from profileFinalData
-            Data.newProfileSubmit(namesArray[0],namesArray[1],username)
+            Data.newProfileSubmit(namesArray[0], namesArray[1], username)
         }
 
         // iterate throuhg todoFinalData getting title of each task
         for (let i = 0; i < todoFinalData.length; i++) {
-            
+
             const title = todoFinalData[i].title;
 
             // writes task to profile and displays in dom
-            Data.writeTaskToProfile(title,1);
-            Tasks.displayTask(title,1);
+            Data.writeTaskToProfile(title, 1);
+            Tasks.displayTask(title, 1);
 
             // changes active profile to Bret after first three tasks are processed
             if (i === 2) {
@@ -107,20 +107,20 @@ const loadWithFetch = async () => {
         // sets this bool to true to ensure fetch test is only executed once per page refresh
         loadWithFetchCalled = true;
 
-    }catch(err) {
+    } catch (err) {
         console.error(err)
     }
 }
 
 
 // calls loadWithFetch to test fetch api usage
-const testButton5 = document.querySelector("#test-button5")
-testButton5.addEventListener('click', ()=> {
-    if (loadWithFetchCalled === false) {
-        loadWithFetch()
-    }
-    else {
-        alert(`fetch test has already been called`)
-    } 
-})
+// const testButton5 = document.querySelector("#test-button5")
+// testButton5.addEventListener('click', ()=> {
+//     if (loadWithFetchCalled === false) {
+//         loadWithFetch()
+//     }
+//     else {
+//         alert(`fetch test has already been called`)
+//     } 
+// })
 
