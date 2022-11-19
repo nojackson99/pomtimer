@@ -14,7 +14,6 @@ export class LocalStorage {
     // On first app run no sessionLengths will be stored. Return default data,
     // this will be replaced if user changes/saves new session length data
     if (sessionLengths == null) {
-      console.log('in sessionLengths == null');
       sessionLengths = {
         pomodoro: 25,
         shortBreak: 5,
@@ -29,5 +28,14 @@ export class LocalStorage {
     localStorage.setItem('profileData', jsonData);
   }
 
-  loadProfileData() {}
+  loadProfileData() {
+    const jsonData = localStorage.getItem('profileData');
+    let profileData = JSON.parse(jsonData);
+
+    if (profileData == null) {
+      profileData = [];
+    }
+
+    return profileData;
+  }
 }

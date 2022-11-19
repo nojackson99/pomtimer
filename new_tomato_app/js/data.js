@@ -9,13 +9,13 @@ import * as MyTimer from './timer.js';
 import { LocalStorage } from './localStorage.js';
 
 // -------------- VARIABLES -------------------
-export const profilesArray = []; // array to hold all profile objects
+const localStorageRef = new LocalStorage();
+
+export const profilesArray = processProfileData(); // array to hold all profile objects
 let nextProfileID = 0; // tracks available id for profile instantiation
 export let activeProfile = null; // holds the current activeProfile as an object
 
-const localStorageRef = new LocalStorage();
-
-export function newProfileSubmit(fName, lName, uName) {
+export function newProfileSubmit(newProfile) {
   // close profile modal on successful submission of form
   Header.profileModal.close();
 
@@ -27,23 +27,39 @@ export function newProfileSubmit(fName, lName, uName) {
   profilesArray.push({
     id: myID, // id of profile object
     nextTaskID: 0, // holds next available task id for task instantiation
-    firstName: fName, // first name of user
-    lastName: lName, // last name of user
-    username: uName, // username of user
+    firstName: newProfile.firstName, // first name of user
+    lastName: newProfile.lastName, // last name of user
+    username: newProfile.username, // username of user
     tasksArray: [], // hold array of tasks for current user
   });
 
-  // save profile data to local storage
+  // save newly created profile to local storage
   localStorageRef.saveProfileData(profilesArray);
 
   // set profile to active
-  setActiveProfile(uName);
+  setActiveProfile(newProfile.username);
   // clears tasks display
   clearTaskDisplay();
+  // add new profile to profile dropdown
+  displayInProfileDropdown(newProfile);
+}
 
+export function processProfileData() {
+  const localStorageData = localStorageRef.loadProfileData();
+
+  for (let i = 0; i < localStorageData.length; i++) {
+    displayInProfileDropdown(localStorageData[i]);
+  }
+
+  return localStorageData;
+}
+
+// Creates html element in profile dropdown for newly created profile.
+// Sets event listener to allow setting profile to active.
+export function displayInProfileDropdown(profile) {
   // add new profile html element to profile menu
   let profileMenuElement = document.createElement('p');
-  profileMenuElement.innerText = `${uName}`;
+  profileMenuElement.innerText = `${profile.username}`;
   Header.dropdownContent.appendChild(profileMenuElement);
 
   // set event listener to update activeProfile when profile is clicked in menu
@@ -66,7 +82,7 @@ export function writeTaskToProfile(taskInput, taskLength) {
     taskComplete: false, // tracks if task is considered complete by user
   });
 
-  // save profile data to local storage
+  // save newly created task to local storage
   localStorageRef.saveProfileData(profilesArray);
 }
 
@@ -82,8 +98,10 @@ export function setActiveProfile(uName) {
     }
   }
 
+  console.log(activeProfile);
+
   //update active profile display
-  Tasks.tasksHeader.innerText = `Tasks: ${uName}`;
+  Tasks.tasksHeader.innerText = `Tasks: ${activeProfile.firstName} ${activeProfile.lastName}`;
 }
 
 //deletes task from tasksArray when delete button is clicked by user
@@ -109,7 +127,7 @@ export function deleteTask(taskInputContent) {
     }
   }
 
-  // save profile data to local storage
+  // remove deleted task from local storage
   localStorageRef.saveProfileData(profilesArray);
 }
 
@@ -138,6 +156,9 @@ export function updateSessionsCurrent() {
         taskTempObject.taskComplete = true;
       }
 
+      // save updated sessions current to local storage
+      localStorageRef.saveProfileData(profilesArray);
+
       taskListChildNum = i; // set child number of task in taskList
       break;
     }
@@ -162,6 +183,12 @@ export function updateSessionsCurrent() {
   }
 }
 
+//! BUG: switching between profiles does not clear active task and
+//!      in progress tasks are not displayed correctly
+//! INVESTIGATE: see how loading profiles from local storage displays
+//!              task information
+//? FIX: displayTask() should accept sessionsCurrent as a param
+//?      and taskProgress should be set to that param
 // iterates through taskArray of current active task and calls display task for each
 export function writeNewTaskDisplay() {
   // ? Use forEach instead ?

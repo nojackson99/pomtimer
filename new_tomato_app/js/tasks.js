@@ -8,8 +8,9 @@
 // [X] todo: create functionality to set a current task that is displayed below timer
 // [X] todo: add length display for each task that updates when a focus session has ended
 
-import * as Data from './data.js'; //data asccoaited code
+import * as Data from './data.js'; //data associated code
 import * as MyTimer from './timer.js'; //timer associated code
+import { LocalStorage } from './localStorage.js';
 
 // -------------- DOM NODES -------------------
 const form = document.querySelector('#task-form'); // new task submit form
@@ -17,6 +18,8 @@ export const taskInput = document.querySelector('#new-task-input'); // new task 
 export const taskLength = document.querySelector('#new-task-length'); // new task submit length box
 export const taskList = document.querySelector('#tasks'); // div holding current tasks
 export const tasksHeader = document.querySelector('#tasks-header'); // tasks title below task submit form
+
+const localStorageRef = new LocalStorage();
 
 // creates new task when add task button is clicked in new task form
 // creates all html elements with user provided content and appends to taskList
@@ -114,6 +117,10 @@ export function displayTask(taskInputContent, taskLengthContent) {
       taskInputContent = taskElementInput.value;
       // update task content in tasksArray object
       tempTaskObject.description = taskElementInput.value;
+
+      // update task description in local storage
+      localStorageRef.saveProfileData(Data.profilesArray);
+
       // update task display properly after user is finished editing
       taskElementInput.value = `${taskProgress}/${taskLengthContent} | ${taskInputContent}`;
     }

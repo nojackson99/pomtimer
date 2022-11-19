@@ -124,7 +124,6 @@ timer.addEventListener('targetAchieved', () => {
   // increment workSession counter if pomodoro was active theme
   if (Theme.siteBody.classList.contains('pomodoro-red')) {
     workSessionNumber++;
-    console.log(workSessionNumber);
 
     // call function to update sessions completed on task if there is an active task
     if (!(activeTask.innerText === 'Active task shown here')) {

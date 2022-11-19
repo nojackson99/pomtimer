@@ -42,13 +42,15 @@ closeProfileModal.addEventListener('click', () => {
 
 // add new profile to profilesArray
 newProfileSubmit.addEventListener('click', () => {
-  // get values from new profile form
-  const fName = newProfileFirstName.value;
-  const lName = newProfileLastName.value;
-  const uName = newProfileUsername.value;
+  // Get values from new profile form.
+  const newProfile = {
+    firstName: newProfileFirstName.value,
+    lastName: newProfileLastName.value,
+    username: newProfileUsername.value,
+  };
 
   // call function to create new profile
-  Data.newProfileSubmit(fName, lName, uName);
+  Data.newProfileSubmit(newProfile);
 });
 
 // -------------- SETTINGS --------------------
