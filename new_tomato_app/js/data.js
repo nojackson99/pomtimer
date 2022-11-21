@@ -44,6 +44,7 @@ export function newProfileSubmit(newProfile) {
   displayInProfileDropdown(newProfile);
 }
 
+// Process profiles from local storage into application.
 export function processProfileData() {
   const localStorageData = localStorageRef.loadProfileData();
 
@@ -189,13 +190,14 @@ export function updateSessionsCurrent() {
 //!              task information
 //? FIX: displayTask() should accept sessionsCurrent as a param
 //?      and taskProgress should be set to that param
-// iterates through taskArray of current active task and calls display task for each
+// iterates through taskArray of current active profile and calls display task for each
 export function writeNewTaskDisplay() {
   // ? Use forEach instead ?
   for (let i = 0; i < activeProfile.tasksArray.length; i++) {
     Tasks.displayTask(
       activeProfile.tasksArray[i].description,
-      activeProfile.tasksArray[i].sessionsTotal
+      activeProfile.tasksArray[i].sessionsTotal,
+      activeProfile.tasksArray[i].sessionsCurrent
     );
   }
 }
@@ -210,6 +212,10 @@ export function clearTaskDisplay() {
     const child = Tasks.taskList.firstElementChild;
     Tasks.taskList.removeChild(child);
   }
+
+  // reset active task display
+  MyTimer.activeTask.innerText = 'Active task shown here';
+  MyTimer.activeTask.classList.remove('strikethrough');
 }
 
 //-------------------DEBUG BUTTONS ------------------------------

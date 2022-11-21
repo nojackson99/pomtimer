@@ -25,9 +25,13 @@ const localStorageRef = new LocalStorage();
 // creates all html elements with user provided content and appends to taskList
 // creates event listeners for edit and delte buttons for the new task
 // parameters are the values from the task submission form
-export function displayTask(taskInputContent, taskLengthContent) {
+export function displayTask(
+  taskInputContent,
+  taskLengthContent,
+  sessionsCompleted
+) {
   //placeholder to hold current sessions completed for task
-  let taskProgress = 0;
+  let taskProgress = sessionsCompleted;
 
   // form validation to ensure a task and length are entered before submitting
   // [X] todo: implement validation to prevent length being higher than 9
@@ -49,7 +53,12 @@ export function displayTask(taskInputContent, taskLengthContent) {
   taskElementInput.classList.add('text');
   taskElementInput.classList.add('task-input');
   taskElementInput.setAttribute('readonly', 'readonly'); // ensure new task can't be edited without first clicking edit button
+
   taskElementInput.value = `${taskProgress}/${taskLengthContent} | ${taskInputContent}`;
+
+  if (taskProgress == taskLengthContent) {
+    taskElementInput.classList.add('strikethrough');
+  }
 
   const taskElementActions = document.createElement('div');
   taskElementActions.classList.add('actions');
@@ -136,13 +145,16 @@ export function displayTask(taskInputContent, taskLengthContent) {
 
   // clicking task box makes this task active
   taskElementInput.addEventListener('click', () => {
-    // removes strikethrough css if it is applied to active task dom node
-    if (MyTimer.activeTask.classList.contains('strikethrough')) {
+    // check if task is complete
+    if (taskProgress == taskLengthContent) {
+      // is complete: set strikethrough and display task without session tracking
+      MyTimer.activeTask.classList.add('strikethrough');
+      MyTimer.activeTask.innerText = `${taskInputContent}`;
+    } else {
+      // is not complete: remove strikethrough and display task sessions
       MyTimer.activeTask.classList.remove('strikethrough');
+      MyTimer.activeTask.innerText = `${taskProgress}/${taskLengthContent} | ${taskInputContent}`;
     }
-
-    // displays clicked task as the active task
-    MyTimer.activeTask.innerText = `${taskProgress}/${taskLengthContent} | ${taskInputContent}`;
   });
 }
 
@@ -154,7 +166,7 @@ form.addEventListener('submit', (e) => {
   // validation input to ensure there is an active profile before attempting to add task
   if (Data.activeProfile) {
     // call function to display task on site
-    displayTask(taskInput.value, taskLength.value);
+    displayTask(taskInput.value, taskLength.value, 0);
 
     // validation to ensure a task desc and length has been specified by user
     if (taskLength.value && taskInput.value) {

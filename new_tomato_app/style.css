@@ -7,11 +7,11 @@
   margin-top: 80px;
 }
 
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-	color: white;
-	padding-left: 5px;
-  }
-
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  padding-left: 5px;
+}
 
 /* 
 =============================================
@@ -20,29 +20,28 @@ COLOR THEMES
 */
 
 :root {
-	--pomodoro: #D95550;
-	--pomodoro-light: #DD6662;
-	--short-break: #4C9195;
-	--short-break-light: #5E9CA0;
-	--long-break: #457CA3;
-	--long-break-light: #5889AC;
+  --pomodoro: #d95550;
+  --pomodoro-light: #dd6662;
+  --short-break: #4c9195;
+  --short-break-light: #5e9ca0;
+  --long-break: #457ca3;
+  --long-break-light: #5889ac;
 }
 
 .pomodoro-red {
-	--accent: var(--pomodoro-light);
-	--main: var(--pomodoro);
+  --accent: var(--pomodoro-light);
+  --main: var(--pomodoro);
 }
 
 .short-break-green {
-	--accent: var(--short-break-light);
-	--main: var(--short-break);
+  --accent: var(--short-break-light);
+  --main: var(--short-break);
 }
 
 .long-break-blue {
-	--accent: var(--long-break-light);
-	--main: var(--long-break);
+  --accent: var(--long-break-light);
+  --main: var(--long-break);
 }
-
 
 /* 
 =============================================
@@ -51,8 +50,8 @@ HTML ELEMENT CLASSES
 */
 
 body {
-	background-color: var(--main);
-	transition: background-color 500ms ease-in-out;
+  background-color: var(--main);
+  transition: background-color 500ms ease-in-out;
 }
 
 /* 
@@ -62,154 +61,155 @@ HEAD CLASSES
 */
 
 .close {
-	position: absolute;
-	right: 32px;
-	top: -6px;
-	bottom: 0px;
-	width: 32px;
-	height: 32px;
-	opacity: 0.3;
-  }
-  .close:hover {
-	opacity: 1;
-  }
-  .close:before, .close:after {
-	position: absolute;
-	left: 15px;
-	content: ' ';
-	height: 33px;
-	width: 2px;
-	background-color: #333;
-  }
-  .close:before {
-	transform: rotate(45deg);
-  }
-  .close:after {
-	transform: rotate(-45deg);
-  }
+  position: absolute;
+  right: 32px;
+  top: -6px;
+  bottom: 0px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.3;
+}
+.close:hover {
+  opacity: 1;
+}
+.close:before,
+.close:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 33px;
+  width: 2px;
+  background-color: #333;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
+}
 
 dialog {
-	border:none;
-	border-radius: 10px;
+  border: none;
+  border-radius: 10px;
 }
 
 dialog::backdrop {
-	background: black;
-	opacity: .4;
+  background: black;
+  opacity: 0.4;
 }
 
 .modal-title {
-	font-size: 20px;
-	padding: 0px;
-	margin: 0px;
-	color: gray;
+  font-size: 20px;
+  padding: 0px;
+  margin: 0px;
+  color: gray;
 }
-  
+
 .dropdown-content {
-	display: none;
-	position: absolute;
-	background-color: #f9f9f9;
-	min-width: 160px;
-	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-	z-index: 1;
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
 }
-  
+
 .dropdown-content p {
-	color: black;
-	padding: 12px 16px;
-	text-decoration: none;
-	display: block;
-	font-size: 14px;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  font-size: 14px;
 }
-  
+
 .dropdown-content p:hover {
-	background-color: #f1f1f1;
-	border-radius: 10px;
-	cursor: pointer;
+  background-color: #f1f1f1;
+  border-radius: 10px;
+  cursor: pointer;
 }
-  
+
 .dropdown:hover .dropdown-content {
-	display: block;
-	border-radius: 10px;
+  display: block;
+  border-radius: 10px;
 }
-  
+
 .dropdown:hover .header-button {
-	background-color: #f1f1f1;
+  background-color: #f1f1f1;
 }
 
 /* head text classes */
 .head-content-flex {
-    display: flex;
-    align-items: center;
-    color: white;
-    font-size: 22px;
-    /* justify-content: center; */
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: 22px;
+  /* justify-content: center; */
 }
 
 .box {
-	flex: 1;
-	display: flex;
-	justify-content: center;
+  flex: 1;
+  display: flex;
+  justify-content: center;
 }
 
 .head-content-flex:first-child > div {
-	margin-right: auto;
+  margin-right: auto;
 }
 
 .head-content-flex:last-child > button {
-	margin-left: auto;
+  margin-left: auto;
 }
 
 .header-button {
-	display: inline-block;
-	padding: 8px 25px;
-	font-size: 22px;
-	cursor: pointer;
-	text-decoration: none;
-	outline: none;
-	color: var(--main);
-	background-color: white;
-	border: none;
-	border-radius: 10px;
-	font-weight: bold;
+  display: inline-block;
+  padding: 8px 25px;
+  font-size: 22px;
+  cursor: pointer;
+  text-decoration: none;
+  outline: none;
+  color: var(--main);
+  background-color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
 }
 
-.divider
-{
-	position: relative;
-	margin-top: 90px;
-	height: 1px;
+.divider {
+  position: relative;
+  margin-top: 90px;
+  height: 1px;
 }
 
 /* Head to body divider classes */
-.div-transparent
-{
-	content: "";
-	position: absolute;
-	top: 0;
-	left: 5%;
-	right: 5%;
-	width: 90%;
-	height: 1px;
-	background-image: linear-gradient(to right, transparent, rgb(48,49,51), transparent);
+.div-transparent {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 5%;
+  right: 5%;
+  width: 90%;
+  height: 1px;
+  background-image: linear-gradient(
+    to right,
+    transparent,
+    rgb(48, 49, 51),
+    transparent
+  );
 }
 
-.div-dot:after
-{
-	content: "";
-	position: absolute;
-	z-index: 1;
-	top: -9px;
-	left: calc(50% - 9px);
-	width: 18px;
-	height: 18px;
-	background-color: white;
-	border: 1px solid rgb(48,49,51);
-	border-radius: 50%;
-	box-shadow: inset 0 0 0 2px white,
-					0 0 0 4px var(--main);
+.div-dot:after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  top: -9px;
+  left: calc(50% - 9px);
+  width: 18px;
+  height: 18px;
+  background-color: white;
+  border: 1px solid rgb(48, 49, 51);
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 2px white, 0 0 0 4px var(--main);
 }
-
 
 /* 
 =============================================
@@ -219,46 +219,45 @@ BODY CLASSES
 
 /* background color classes */
 .pomodoro {
-    background-color: var(--pomodoro);
-    color: var(--pomodoro)
+  background-color: var(--pomodoro);
+  color: var(--pomodoro);
 }
 
 .pomodoro-light {
-	background-color: var(--pomodoro-light);
-	color: var(--pomodoro-light);
+  background-color: var(--pomodoro-light);
+  color: var(--pomodoro-light);
 }
 
 .long-break {
-	background-color: var(--long-break);
-	color: var(--long-break);
+  background-color: var(--long-break);
+  color: var(--long-break);
 }
 
 .long-break-light {
-	background-color: var(--long-break-light);
-	color: var(--long-break-light);
+  background-color: var(--long-break-light);
+  color: var(--long-break-light);
 }
 
 .short-break {
-	background-color: var(--short-break);
-	color: var(--short-break);
+  background-color: var(--short-break);
+  color: var(--short-break);
 }
 
 .short-break-light {
-	background-color: var(--short-break-light);
-	color: var(--short-break-light);
+  background-color: var(--short-break-light);
+  color: var(--short-break-light);
 }
 
 /* style border around timer content */
 .border {
-  	border-radius: 35px;
-	margin: auto;
-    padding: 40px;
-    width: 550px;
-    height: 320px;
-	background-color: var(--accent);
-	transition: background-color 750ms ease-in-out;
+  border-radius: 35px;
+  margin: auto;
+  padding: 40px;
+  width: 550px;
+  height: 320px;
+  background-color: var(--accent);
+  transition: background-color 750ms ease-in-out;
 }
-
 
 /* 
 -------------------------------
@@ -268,40 +267,39 @@ styling for buttons above timer
 
 /* sets button style to rounded */
 .rounded-button {
-	border-radius: 7px;
-	font-size: 18px;
-	color: var(--main);
-	border: none;
-	transition: color 750ms ease-in-out;
-	cursor: pointer;
+  border-radius: 7px;
+  font-size: 18px;
+  color: var(--main);
+  border: none;
+  transition: color 750ms ease-in-out;
+  cursor: pointer;
 }
 
 .rounded-button:hover {
-	opacity: 0.9;
+  opacity: 0.9;
 }
 .rounded-button:active {
-	opacity: 0.75;
+  opacity: 0.75;
 }
 
 /* styles button spacing */
 .button-flex {
-	display: flex;
-	color: white;
-	font-size: 22px;
-  }
-  
-.button-flex-child {
-	flex: 1;
+  display: flex;
+  color: white;
+  font-size: 22px;
 }
-  
+
+.button-flex-child {
+  flex: 1;
+}
+
 .button-flex-child:first-child {
-	margin-right: 15px
+  margin-right: 15px;
 }
 
 .button-flex-child:nth-child(2) {
-	margin-right: 15px
+  margin-right: 15px;
 }
-
 
 /* 
 -------------------------------
@@ -311,20 +309,19 @@ countdown timer styling
 
 /* sets styling for countdown timer */
 .timer {
-	text-align: center;
-	color: white;
+  text-align: center;
+  color: white;
 }
 .large-text {
-	font-size: 80px;
-	line-height: 34px;
-  	height: 110px;
+  font-size: 80px;
+  line-height: 34px;
+  height: 110px;
 }
 .finish-text {
-	font-size: 45px;
-	line-height: 100px;
-  	height: 157px;
+  font-size: 45px;
+  line-height: 100px;
+  height: 157px;
 }
-
 
 /* 
 -------------------------------
@@ -334,37 +331,37 @@ styling for content below timer
 
 /* sets button style to animated */
 .animated-button {
-	display: inline-block;
-	padding: 15px 25px;
-	font-size: 24px;
-	cursor: pointer;
-	text-align: center;
-	text-decoration: none;
-	outline: none;
-	color: var(--main);
-	background-color: white;
-	border: none;
-	border-radius: 15px;
-	box-shadow: 0 9px #999;
-	font-weight: bold;
-	transition: color 750ms ease-in-out; 
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: var(--main);
+  background-color: white;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  font-weight: bold;
+  transition: color 750ms ease-in-out;
 }
- 
+
 /* provides animation for button click */
 .animated-button:active {
-	background-color: white;
-	box-shadow: 0 5px #666;
-	transform: translateY(4px);
+  background-color: white;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
 
 /* apply to element to hide it */
 .hide {
-	display: none;
+  display: none;
 }
 
 .active-task {
-	padding-top: 10px;
-	color: #C0C0C0;
+  padding-top: 10px;
+  color: #c0c0c0;
 }
 
 /*
@@ -375,87 +372,83 @@ styling for task module
 
 /* sets smaller animated button */
 .smaller {
-	padding: 5px 5px;
-	font-size: 14px;
-	box-shadow: 0 4px #999;
-	border-radius: 5px;
-
+  padding: 5px 5px;
+  font-size: 14px;
+  box-shadow: 0 4px #999;
+  border-radius: 5px;
 }
 
 /* sets for new task form */
 .new-task-form {
-	display: flex;
-	justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .item {
-	margin: 6px;
-	max-width: 460px;
-	appearance: none;
-	border: none;
-	outline: none;
-	background: none;
+  margin: 6px;
+  max-width: 460px;
+  appearance: none;
+  border: none;
+  outline: none;
+  background: none;
 }
 
 .new-task-length {
-	max-width: 70px;
-	border-radius: px;
-	color: white;
-	border-radius: 5px;
+  max-width: 70px;
+  border-radius: px;
+  color: white;
+  border-radius: 5px;
 }
 
 .new-task-input {
-	flex-grow: 1;
-	font-size: 1.8rem;
-	color: white;
-	border-radius: 5px;
-
+  flex-grow: 1;
+  font-size: 1.8rem;
+  color: white;
+  border-radius: 5px;
 }
 
 .new-task-submit {
-	background: white;
+  background: white;
 }
 
 .task-theme {
-	background-color: var(--accent);
-
+  background-color: var(--accent);
 }
 
 .task {
-	display: flex;
-	justify-content: center;
-	padding-top: 20px;
-
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
 }
 
 .task-input {
-	appearance: none;
-	border: none;
-	outline: none;
-	background: none;
-	background-color: var(--accent);
-	width: 500px;
-	font-size: 1.2rem;
-	color: white;
-	border-radius: 5px;
-	cursor: pointer;
+  appearance: none;
+  border: none;
+  outline: none;
+  background: none;
+  background-color: var(--accent);
+  width: 500px;
+  font-size: 1.2rem;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-.task-input:hover  {
-	filter: brightness(95%);
+.task-input:hover {
+  filter: brightness(95%);
 }
 
 .tasks-header {
-	display: flex;
-	justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
-.strikethrough{
-	text-decoration: line-through;
+.strikethrough {
+  text-decoration: line-through;
 }
 
 span {
-	padding: 10px;
+  padding: 10px;
 }
 
 /* body {
